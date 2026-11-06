@@ -14,7 +14,7 @@
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1a1d26" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Cormorant+Garamond:wght@600;700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: barra fija con pestañas; contenido en rejilla de cartas a tamaño real (esquinas redondeadas como una carta física) */
 :root{
@@ -279,6 +279,62 @@ a.stat{color:inherit;text-decoration:none}
 .tsquote input{width:78px;padding:4px 6px}
 .fit.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
 @media (max-width:520px){.tsrow{grid-template-columns:52px minmax(0,1fr)}.tsrow .tsbuy{grid-column:2;justify-self:start}}
+.stylebtn{margin-left:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;height:34px;padding:0 11px;display:inline-flex;align-items:center;gap:3px;cursor:pointer;flex:none}
+.stylebtn span{width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.stylebtn span:nth-child(1){background:#c98a22}.stylebtn span:nth-child(2){background:#7c5cff}.stylebtn span:nth-child(3){background:linear-gradient(135deg,#2a77bd 50%,#cf432c 50%)}
+@media (max-width:560px){.stylebtn{margin-left:auto}}
+.stylepick{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+.stylecard{display:grid;gap:4px;text-align:left;border:2px solid var(--line);border-radius:12px;padding:10px;background:var(--surface);cursor:pointer}
+.stylecard[aria-checked="true"]{border-color:var(--accent)}
+.sp{display:flex;gap:4px;height:34px;border-radius:8px;padding:6px;align-items:center}
+.sp i{flex:1;height:100%;border-radius:5px}
+.sp-clasico{background:#eceef3}.sp-clasico i:nth-child(1){background:#1a1e29}.sp-clasico i:nth-child(2){background:#9a5f0a}.sp-clasico i:nth-child(3){background:#fff}
+.sp-arcano{background:#0d0b1a}.sp-arcano i:nth-child(1){background:#4c1d95}.sp-arcano i:nth-child(2){background:#a78bfa}.sp-arcano i:nth-child(3){background:#22d3ee}
+.sp-mana{background:#fbfaf7}.sp-mana i:nth-child(1){background:#2a77bd}.sp-mana i:nth-child(2){background:#cf432c}.sp-mana i:nth-child(3){background:#2c8749}
+.systeps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14px}
+.systeps a,.syncnudge b{color:var(--accent)}
+.syncnudge{display:grid;gap:2px;text-decoration:none;color:inherit;margin-bottom:14px;border-color:var(--accent)}
+.deck-card{position:relative}
+
+/* ===== Estilo 3: Arcano nocturno ===== */
+:root[data-style="arcano"]{
+  --bg:#0d0b1a; --surface:#161329; --surface-2:#1f1a3a; --ink:#ece8ff; --muted:#a6a1c9; --line:#2c2654;
+  --accent:#a78bfa; --accent-ink:#140f2a; --accent-soft:#2a2150;
+  --ok:#5eead4; --warn:#fbbf24; --bad:#fb7185; color-scheme:dark; --setf:invert(.92);
+  --display:"Cormorant Garamond",Georgia,serif; --body:"Inter",ui-sans-serif,system-ui,sans-serif}
+[data-style="arcano"] body{background:radial-gradient(1100px 600px at 0% -10%,rgba(124,58,237,.22),transparent 60%),radial-gradient(900px 500px at 110% 0%,rgba(34,211,238,.08),transparent 60%),var(--bg);background-attachment:fixed}
+[data-style="arcano"] header.top{background:#100d20}
+[data-style="arcano"] h1,[data-style="arcano"] h2,[data-style="arcano"] h3,[data-style="arcano"] .brand{font-weight:700;letter-spacing:.01em}
+[data-style="arcano"] .brand{font-size:24px}
+[data-style="arcano"] .brand i,[data-style="arcano"] .pbar i{background:linear-gradient(135deg,#a78bfa,#22d3ee)}
+[data-style="arcano"] .box,[data-style="arcano"] .stat,[data-style="arcano"] .deck-card{background:var(--surface);box-shadow:0 12px 30px -20px rgba(124,58,237,.7)}
+[data-style="arcano"] .box h4{color:#c4b5fd;letter-spacing:.12em}
+[data-style="arcano"] .hhero{background:radial-gradient(130% 120% at 0% 0%,#4c1d95,#1e1240 55%,#161329);border-color:#4c3a8f;box-shadow:0 0 44px -14px rgba(167,139,250,.6)}
+[data-style="arcano"] .hhero h2{font-size:30px}
+[data-style="arcano"] .hclock div{background:rgba(255,255,255,.06);border:1px solid rgba(196,181,253,.25)}
+[data-style="arcano"] .chip[aria-pressed="true"],[data-style="arcano"] .segbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+/* ===== Estilo 4: Maná ===== */
+:root[data-style="mana"]{
+  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f2f1ec; --ink:#16181d; --muted:#5d6270; --line:#e6e4dc;
+  --accent:#2563a8; --accent-ink:#ffffff; --accent-soft:#e6eef8;
+  --ok:#1f7a45; --warn:#b4610c; --bad:#b3261e; color-scheme:light; --setf:none;
+  --display:"Space Grotesk",ui-sans-serif,system-ui,sans-serif; --body:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
+[data-style="mana"] header.top{border-bottom:0}
+[data-style="mana"] header.top::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:4px;background:linear-gradient(90deg,#e8dcae 0 20%,#2a77bd 20% 40%,#3b3440 40% 60%,#cf432c 60% 80%,#2c8749 80%)}
+[data-style="mana"] .brand i{background:conic-gradient(#e8dcae 0 20%,#2a77bd 0 40%,#3b3440 0 60%,#cf432c 0 80%,#2c8749 0)}
+[data-style="mana"] .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+[data-style="mana"] .box,[data-style="mana"] .stat,[data-style="mana"] .deck-card{background:var(--surface);border-color:transparent;border-radius:18px;box-shadow:0 1px 0 rgba(0,0,0,.04),0 8px 22px -12px rgba(0,0,0,.2)}
+[data-style="mana"] .box h4{color:var(--ink);letter-spacing:0;text-transform:none;font-size:15px;font-weight:700}
+[data-style="mana"] .hhero{background:linear-gradient(120deg,#2a77bd,#7a4fb3 45%,#cf432c);color:#fff;border:0;box-shadow:0 16px 34px -18px rgba(42,119,189,.7)}
+[data-style="mana"] .hhero .hint,[data-style="mana"] .hhero .kicker,[data-style="mana"] .hclock span{color:rgba(255,255,255,.88)}
+[data-style="mana"] .hhero a:not(.btn){color:#fff}
+[data-style="mana"] .hhero .btn.primary{background:#fff;color:#16181d;border-color:#fff}
+[data-style="mana"] .hclock div{background:rgba(255,255,255,.18)}
+[data-style="mana"] .deck-card::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:var(--dk);z-index:1}
+[data-style="mana"] .deck-card .info{background:linear-gradient(180deg,color-mix(in srgb,var(--dk1) 13%,var(--surface)),var(--surface) 75%)}
+[data-style="mana"] .deck-card .pbar i{background:var(--dk1)}
+[data-style="mana"] .chip[aria-pressed="true"],[data-style="mana"] .segbtn[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 /* modal */
 .modal{position:fixed;inset:0;z-index:50;background:rgba(10,12,18,.62);display:grid;place-items:center;padding:16px;overflow:auto}
 .sheet{background:var(--surface);border-radius:16px;max-width:920px;width:100%;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px;padding:22px;position:relative;max-height:calc(100vh - 32px);overflow:auto}
@@ -351,6 +407,7 @@ a{color:var(--accent)}
     <a href="#ajustes" data-view="ajustes">Ajustes</a>
   </nav>
   <span class="save-state" id="saveState"></span>
+  <button class="stylebtn" id="styleBtn" type="button" aria-label="Cambiar estilo" title="Cambiar estilo"><span></span><span></span><span></span></button>
 </div></header>
 <main class="wrap" id="app"><div class="jsfail"><h2>La app no está corriendo aquí</h2><p>Si ves este mensaje, el programa donde abriste el archivo no ejecuta la app (pasa en la vista previa de Claude, de Mail o de Finder). Descarga <b>grimorio.html</b> y ábrelo con Chrome o Safari: clic derecho → Abrir con → Google Chrome.</p></div></main>
 <div id="peek" hidden><img alt=""></div>
@@ -363,9 +420,10 @@ window.addEventListener("error", e => { const a=document.getElementById("app"); 
 "use strict";
 /* ============ Estado y guardado ============ */
 const KEY = "grimorio.v1";
-const blank = () => ({ v:1, cards:{}, collection:[], decks:[], settings:{ pen:3.75, showPen:true } });
+const blank = () => ({ v:1, cards:{}, collection:[], decks:[], settings:{ pen:3.75, showPen:true, style:"clasico" } });
 const normalize = s => Object.assign(blank(), s, {settings:Object.assign(blank().settings, s.settings||{})});
 let S = load();
+applyStyle();
 function load(){
   try{ const raw = localStorage.getItem(KEY); if(raw) return normalize(JSON.parse(raw)); }catch(e){}
   return blank();
@@ -378,6 +436,7 @@ let OWN = null; // índice nombre -> copias en la colección
 let saveTimer=null, lastSize=0;
 function save(){
   OWN = null;
+  scheduleSync();
   clearTimeout(saveTimer);
   saveTimer = setTimeout(async ()=>{
     const json = JSON.stringify(S); lastSize = json.length;
@@ -388,6 +447,159 @@ function save(){
     if(saved) ok(); else $("#saveState").textContent = "No se pudo guardar en este navegador. Descarga un respaldo en Ajustes.";
   }, 250);
 }
+
+/* ============ Estilos visuales ============ */
+const STYLE_UI = [["clasico","Clásico","Claro u oscuro según tu equipo"],["arcano","Arcano nocturno","Oscuro con brillo violeta"],["mana","Maná","Blanco con los cinco colores de maná"]];
+function applyStyle(){
+  const st = (S && S.settings && S.settings.style) || "clasico", r = document.documentElement;
+  if(st === "clasico") r.removeAttribute("data-style"); else r.setAttribute("data-style", st);
+  const tc = { arcano:"#0d0b1a", mana:"#ffffff" }[st];
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m,i) => m.setAttribute("content", tc || (i ? "#1a1d26" : "#ffffff")));
+}
+function setStyle(id){ S.settings.style = id; applyStyle(); save(); }
+function cycleStyle(){
+  const ids = STYLE_UI.map(x=>x[0]); const i = ids.indexOf(S.settings.style || "clasico");
+  setStyle(ids[(i+1) % ids.length]); toast("Estilo: " + STYLE_UI.find(x=>x[0]===S.settings.style)[1]);
+  if(location.hash === "#ajustes") renderSettings();
+}
+
+/* ============ Sincronización entre dispositivos (gist secreto de GitHub) ============ */
+// Se sincroniza colección, decks, ajustes e historial. Los datos de cartas (imágenes, precios) se vuelven a pedir a Scryfall.
+// Mezcla de 3 vías por elemento: si solo un lado cambió algo, gana ese cambio; si ambos cambiaron lo mismo, gana este dispositivo.
+const SYNC_LS = "grimorio.sync", SYNC_BASE = "grimorio.syncbase", SYNC_FILE = "grimorio-sync.json";
+let SY = (() => { try{ return JSON.parse(localStorage.getItem(SYNC_LS)) || {}; }catch(e){ return {}; } })();
+const SYNC = { busy:false, again:false, timer:null, quiet:false, status:"", err:"", baseJ:null };
+const J = o => JSON.stringify(o);
+function saveSY(){ try{ localStorage.setItem(SYNC_LS, J(SY)); }catch(e){} }
+function syncPayload(){ return { collection:S.collection||[], decks:S.decks||[], settings:S.settings||{}, history:S.history||[] }; }
+function scheduleSync(){
+  if(!SY.token || SYNC.quiet) return;
+  clearTimeout(SYNC.timer);
+  SYNC.timer = setTimeout(() => { if(SYNC.baseJ && J(syncPayload()) === SYNC.baseJ) return; syncNow(); }, 2500);
+}
+async function getBase(){
+  try{ if(IDB.db){ const v = await idbGet(SYNC_BASE); if(v){ SYNC.baseJ = v; return JSON.parse(v); } } }catch(e){}
+  try{ const v = localStorage.getItem(SYNC_BASE); if(v){ SYNC.baseJ = v; return JSON.parse(v); } }catch(e){}
+  return null;
+}
+async function putBase(j){
+  SYNC.baseJ = j;
+  if(IDB.db){ try{ await idbPut(SYNC_BASE, j); try{ localStorage.removeItem(SYNC_BASE); }catch(_){} return; }catch(e){} }
+  try{ localStorage.setItem(SYNC_BASE, j); }catch(e){}
+}
+function merge3list(b, l, r, key){
+  const m = a => { const x = new Map(); (a||[]).forEach(o => x.set(key(o), J(o))); return x; };
+  const B = m(b), L = m(l), R = m(r), out = [];
+  const order = [...L.keys(), ...[...R.keys()].filter(k => !L.has(k))];
+  for(const k of order){
+    const bj = B.get(k), lj = L.get(k), rj = R.get(k);
+    const pick = lj === rj ? lj : lj === bj ? rj : rj === bj ? lj : (lj !== undefined ? lj : rj);
+    if(pick !== undefined) out.push(JSON.parse(pick));
+  }
+  return out;
+}
+function merge3obj(b, l, r, noBase){
+  const out = {}, keys = new Set([...Object.keys(l||{}), ...Object.keys(r||{})]);
+  keys.forEach(k => {
+    const g = o => o && k in o ? J(o[k]) : undefined, bj = g(b), lj = g(l), rj = g(r);
+    let p; if(lj === rj) p = lj; else if(noBase) p = rj !== undefined ? rj : lj; else p = lj === bj ? rj : rj === bj ? lj : (lj !== undefined ? lj : rj);
+    if(p !== undefined) out[k] = JSON.parse(p);
+  });
+  return out;
+}
+function mergePayload(b, l, r){
+  return {
+    collection: merge3list(b && b.collection, l.collection, r.collection, e => e.id + "|" + (e.foil ? 1 : 0)),
+    decks: merge3list(b && b.decks, l.decks, r.decks, d => d.id),
+    settings: merge3obj(b && b.settings, l.settings, r.settings, !b),
+    history: merge3list(b && b.history, l.history, r.history, h => h.d).sort((x,y) => String(x.d).localeCompare(String(y.d))),
+  };
+}
+function applyPayload(p){
+  S.collection = p.collection || []; S.decks = p.decks || []; S.history = p.history || [];
+  S.settings = Object.assign(blank().settings, p.settings || {}); OWN = null; applyStyle();
+}
+async function gh(path, opt = {}){
+  const headers = Object.assign({ Accept:"application/vnd.github+json", Authorization:"Bearer " + SY.token }, opt.body ? { "Content-Type":"application/json" } : {});
+  const r = await fetch("https://api.github.com" + path, Object.assign({ cache:"no-store" }, opt, { headers }));
+  if(r.status === 401) throw Object.assign(new Error("La llave de GitHub no es válida o venció. Crea una nueva en Ajustes."), { auth:true });
+  if(r.status === 404) throw Object.assign(new Error("No encontrado"), { nf:true });
+  if(!r.ok) throw new Error("GitHub respondió " + r.status);
+  return r.json();
+}
+async function gistData(g){
+  const f = g.files && g.files[SYNC_FILE]; if(!f) return null;
+  let txt = f.content;
+  if(f.truncated || !txt){ const r = await fetch(f.raw_url, { cache:"no-store" }); txt = await r.text(); }
+  return JSON.parse(txt);
+}
+async function findGist(){
+  for(let page = 1; page <= 10; page++){
+    const list = await gh(`/gists?per_page=100&page=${page}`);
+    const g = list.find(x => x.files && x.files[SYNC_FILE]); if(g) return g.id;
+    if(list.length < 100) break;
+  }
+  return null;
+}
+const hhmm = () => new Date().toLocaleTimeString("es-PE", { hour:"2-digit", minute:"2-digit" });
+function setSyncState(t){ SYNC.status = t; const a = document.getElementById("syncState"); if(a) a.textContent = t; const b = document.getElementById("saveState"); if(b && SY.token) b.textContent = t; }
+async function syncNow(){
+  if(!SY.token) return;
+  if(SYNC.busy){ SYNC.again = true; return; }
+  SYNC.busy = true; setSyncState("Sincronizando…");
+  try{
+    if(!SY.gist) SY.gist = await findGist();
+    let remote = null, rev = null;
+    if(SY.gist){
+      try{ const d = await gistData(await gh(`/gists/${SY.gist}`)); if(d && d.data){ remote = d.data; rev = d.rev; } }
+      catch(e){ if(e.nf) SY.gist = null; else throw e; }
+    }
+    const base = SY.rev ? await getBase() : null;
+    const local = syncPayload(), lj = J(local);
+    const merged = (remote && rev !== SY.rev) ? mergePayload(base, local, remote) : local;
+    const mj = J(merged), changedHere = mj !== lj;
+    if(changedHere) applyPayload(JSON.parse(mj));
+    if(!remote || mj !== J(remote)){
+      const newRev = Date.now().toString(36) + uid();
+      const content = J({ app:"grimorio", rev:newRev, at:new Date().toISOString(), data:JSON.parse(mj) });
+      if(SY.gist) await gh(`/gists/${SY.gist}`, { method:"PATCH", body:J({ files:{ [SYNC_FILE]:{ content } } }) });
+      else { const g = await gh(`/gists`, { method:"POST", body:J({ description:"Grimorio: sincronización entre tus dispositivos (no borrar)", public:false, files:{ [SYNC_FILE]:{ content } } }) }); SY.gist = g.id; }
+      SY.rev = newRev;
+    } else SY.rev = rev;
+    await putBase(mj); SY.at = Date.now(); saveSY(); SYNC.err = "";
+    if(changedHere){ SYNC.quiet = true; save(); SYNC.quiet = false; rerenderAfterSync(); }
+    setSyncState("Sincronizado " + hhmm());
+    fetchMissingCards();
+  }catch(e){
+    SYNC.err = e.auth ? e.message : (navigator.onLine === false ? "Sin internet: se sincroniza cuando vuelva." : "No se pudo sincronizar (" + (e.message || e) + "). Se reintenta solo.");
+    setSyncState(SYNC.err);
+  }finally{
+    SYNC.busy = false;
+    if(SYNC.again){ SYNC.again = false; setTimeout(syncNow, 400); }
+  }
+}
+function rerenderAfterSync(){
+  const busyUi = document.querySelector("input:focus,textarea:focus,select:focus") || (document.getElementById("modalRoot")||{}).innerHTML;
+  if(busyUi) toast("Llegaron cambios de tu otro dispositivo"); else route();
+}
+let fetchingCards = false;
+async function fetchMissingCards(){
+  if(fetchingCards) return;
+  const ids = new Set(); S.collection.forEach(e => ids.add(e.id));
+  S.decks.forEach(d => { (d.cards||[]).forEach(e => ids.add(e.id)); if(d.commander) ids.add(d.commander); });
+  const miss = [...ids].filter(id => id && !S.cards[id]); if(!miss.length) return;
+  fetchingCards = true;
+  try{ setSyncState(`Bajando de Scryfall ${miss.length} cartas…`); await refreshPrices(miss); setSyncState("Sincronizado " + hhmm()); rerenderAfterSync(); }
+  finally{ fetchingCards = false; }
+}
+async function connectSync(token){
+  SY = { token: token.trim() }; SYNC.baseJ = null;
+  try{ localStorage.removeItem(SYNC_BASE); }catch(e){}
+  await syncNow();
+  if(SYNC.err){ const err = SYNC.err; if(/llave/.test(err)){ SY = {}; saveSY(); } return err; }
+  saveSY(); return "";
+}
+function disconnectSync(){ SY = {}; saveSY(); SYNC.baseJ = null; try{ localStorage.removeItem(SYNC_BASE); }catch(e){} if(IDB.db){ try{ IDB.db.transaction("kv","readwrite").objectStore("kv").delete(SYNC_BASE); }catch(e){} } setSyncState(""); }
 
 /* ============ Utilidades ============ */
 const $ = (s, r=document) => r.querySelector(s);
@@ -676,6 +888,7 @@ function renderHome(){
         ${live ? `<div class="hlive">${esc(live.name)} está en curso ahora (${live.days}).</div>` : ""}
         <div class="row" style="margin-top:12px;gap:8px"><a class="btn primary" href="https://secretlair.wizards.com/" target="_blank" rel="noopener">Abrir Secret Lair ↗</a></div>
       </section>
+      ${SY.token ? "" : `<a class="box syncnudge" href="#ajustes"><b>🔗 Sincroniza tu Mac y tu iPhone</b><span class="hint">Conéctalos una vez y lo que cambies en uno aparece solo en el otro. Toca aquí.</span></a>`}
       <div class="hgrid" style="margin-bottom:14px">
         <div style="display:grid;gap:14px;align-content:start;min-width:0">${quickSearchHtml()}
           <a class="box storecta" href="#tienda"><b>🛒 Modo tienda</b><span class="hint">Lo que te falta para tus decks, separado por color, rareza y coste, con comparador de precio.</span><span class="price">${(()=>{ const m = storeMissing(); return m.length ? `${m.reduce((a,r)=>a+r.miss,0)} cartas · ${fmtUsd(m.reduce((a,r)=>a+(r.v||0)*r.miss,0))}` : "No te falta nada"; })()}</span></a></div>
@@ -1419,7 +1632,9 @@ function deckCardHtml(d){
   const cmd = d.commander && card(d.commander); const first = cmd || card((deckCards(d).sort((a,b)=>(usdOf(card(b.id))||0)-(usdOf(card(a.id))||0))[0]||{}).id);
   const target = d.format==="commander"?100:60; const built = deckStatus(d)==="built"; const p = deckProgress(d);
   const miss = missingFor(d); const missVal = miss.reduce((a,m)=>{ const c = Object.values(S.cards).find(x=>x.name===m.name); return a+(usdOf(c)||0)*m.n; },0);
-  return `<button class="deck-card" data-deck="${d.id}"><div class="art" style="background-image:url('${esc(first?first.art:"")}')"></div>
+  const ci = ["W","U","B","R","G"].filter(x => (cmd ? (cmd.ci||[]) : deckCards(d).flatMap(e => (card(e.id)||{}).ci||[])).includes(x));
+  const dk = ci.length ? (ci.length === 1 ? `var(--m${ci[0]})` : `linear-gradient(90deg,${ci.map((x,i)=>`var(--m${x}) ${i*100/ci.length}% ${(i+1)*100/ci.length}%`).join(",")})`) : "var(--mC)";
+  return `<button class="deck-card" data-deck="${d.id}" style="--dk:${dk};--dk1:var(--m${ci[0]||"C"})"><div class="art" style="background-image:url('${esc(first?first.art:"")}')"></div>
     <div class="info"><strong style="font-family:var(--display);font-size:17px">${esc(d.name)}</strong>
     <span class="hint">${d.format==="commander"?"Commander":"Standard"}${cmd?" · "+esc(cmd.name):""}</span>
     <div class="row" style="justify-content:space-between"><span class="price">${deckCount(d)}/${target} cartas</span>${priceHtml(deckValue(d))}</div>
@@ -2349,6 +2564,10 @@ function renderSettings(){
   const bytes = lastSize || JSON.stringify(S).length;
   $("#app").innerHTML = `<div class="settings">
     <h2>Ajustes y respaldo</h2>
+    <div class="box" id="syncBox"><h4>Sincronizar Mac y iPhone</h4>${syncBoxHtml()}</div>
+    <div class="box"><h4>Estilo de la app</h4>
+      <div class="stylepick" role="radiogroup" aria-label="Estilo">${STYLE_UI.map(([id,n,x])=>`<button type="button" class="stylecard" role="radio" aria-checked="${(S.settings.style||"clasico")===id}" data-style-pick="${id}"><span class="sp sp-${id}"><i></i><i></i><i></i></span><b>${n}</b><span class="hint">${x}</span></button>`).join("")}</div>
+      <div class="hint">También puedes cambiarlo en cualquier momento con el botón de colores arriba a la derecha.</div></div>
     <div class="box"><h4>Soles peruanos</h4>
       <div class="row"><label for="sPen">Tipo de cambio (S/ por 1 USD)</label><input type="number" id="sPen" step="0.01" min="0" value="${S.settings.pen}" style="width:100px">
       <label class="row" style="gap:6px"><input type="checkbox" id="sShowPen" ${S.settings.showPen?"checked":""}> Mostrar precios en soles</label></div>
@@ -2362,6 +2581,8 @@ function renderSettings(){
     <div class="box"><h4>Zona peligrosa</h4><div class="row"><button class="btn danger" id="bWipe">Borrar todos mis datos</button></div></div>
     <p class="hint">Datos de cartas, imágenes y precios: <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a>. Precios USD de TCGplayer y EUR de Cardmarket, se actualizan una vez al día. Grimorio no está afiliado a Wizards of the Coast.</p>
   </div>`;
+  $$("[data-style-pick]").forEach(b => b.onclick = () => { setStyle(b.dataset.stylePick); renderSettings(); });
+  bindSyncBox();
   $("#sPen").onchange = e => { S.settings.pen = parseFloat(e.target.value)||S.settings.pen; save(); toast("Tipo de cambio guardado"); };
   $("#sShowPen").onchange = e => { S.settings.showPen = e.target.checked; save(); };
   $("#bExport").onclick = () => download(`grimorio-respaldo-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify(S,null,1), "application/json");
@@ -2371,13 +2592,41 @@ function renderSettings(){
     try{ const s = JSON.parse(await f.text()); if(!s.cards||!s.collection||!s.decks) throw 0; if(!confirm("Esto reemplaza tus datos actuales con los del respaldo. ¿Continuar?")) return;
       S = Object.assign(blank(), s, {settings:Object.assign(blank().settings, s.settings||{})}); save(); toast("Respaldo restaurado"); renderSettings(); }
     catch(err){ toast("Ese archivo no es un respaldo de Grimorio"); } };
-  $("#bWipe").onclick = () => { if(confirm("¿Borrar colección, decks y ajustes? No se puede deshacer si no tienes respaldo.")){ S = blank(); save(); toast("Datos borrados"); renderSettings(); } };
+  $("#bWipe").onclick = () => { if(confirm("¿Borrar colección, decks y ajustes? No se puede deshacer si no tienes respaldo." + (SY.token ? " También se borran en tus otros dispositivos sincronizados." : ""))){ S = blank(); save(); toast("Datos borrados"); renderSettings(); } };
+}
+
+function syncBoxHtml(){
+  if(SY.token) return `<p class="okline" style="margin:0;color:var(--ok);font-weight:600">✓ Este dispositivo está sincronizado. Lo que cambies aquí aparece solo en tus otros dispositivos en unos segundos.</p>
+    <div class="hint" id="syncState">${esc(SYNC.err || SYNC.status || (SY.at ? "Última sincronización " + new Date(SY.at).toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"}) : ""))}</div>
+    <div class="row"><button class="btn primary" type="button" id="syNow">Sincronizar ahora</button><button class="btn" type="button" id="syCopy">Copiar llave para otro dispositivo</button><button class="btn" type="button" id="syOff">Desconectar este dispositivo</button></div>`;
+  return `<div class="hint">Conecta cada dispositivo una sola vez con la misma llave. Después, todo lo que cambies en uno aparece solo en el otro. Empieza por el dispositivo donde están tus cartas.</div>
+    <ol class="systeps">
+      <li><b>¿Ya tienes la llave en otro dispositivo?</b> Allí toca <b>Copiar llave para otro dispositivo</b>, aquí mantén apretado el cuadro de abajo y toca <b>Pegar</b>. Salta al paso 5.</li>
+      <li>Si es la primera vez, toca <a href="https://github.com/settings/tokens/new?scopes=gist&description=Grimorio%20sync" target="_blank" rel="noopener">Crear llave en GitHub ↗</a>. Se abre GitHub con todo listo (si te pide, inicia sesión).</li>
+      <li>Donde dice <b>Expiration</b>, elige <b>No expiration</b>.</li>
+      <li>Baja hasta el final, toca el botón verde <b>Generate token</b> y copia la llave que aparece (empieza con <code>ghp_</code>).</li>
+      <li>Pégala aquí y toca <b>Conectar</b>.</li>
+    </ol>
+    <form class="row" id="syForm"><input type="password" id="syTok" placeholder="Pega aquí la llave (ghp_…)" autocomplete="off" autocapitalize="off" spellcheck="false" style="flex:1 1 240px;min-width:0" aria-label="Llave de GitHub"><button class="btn primary">Conectar</button></form>
+    <div class="hint" id="syncState">${esc(SYNC.err||"")}</div>
+    <div class="hint">Tus datos quedan en un gist secreto de tu cuenta de GitHub: no aparece en tu perfil ni en búsquedas. La llave solo sirve para gists, no para tu repositorio ni tu cuenta.</div>`;
+}
+function bindSyncBox(){
+  const f = $("#syForm");
+  if(f) f.onsubmit = async e => { e.preventDefault(); const t = $("#syTok").value.trim(); if(!t){ toast("Pega primero la llave"); return; }
+    const btn = $("button", f); btn.disabled = true; btn.textContent = "Conectando…";
+    const err = await connectSync(t); if(err){ toast(err); btn.disabled = false; btn.textContent = "Conectar"; $("#syncState").textContent = err; return; }
+    toast("¡Conectado! Ya está sincronizado"); if(location.hash === "#ajustes") renderSettings(); };
+  const n = $("#syNow"); if(n) n.onclick = () => syncNow();
+  const c = $("#syCopy"); if(c) c.onclick = async () => { try{ await navigator.clipboard.writeText(SY.token); toast("Llave copiada. En el otro dispositivo: Ajustes → pégala → Conectar"); }catch(e){ prompt("Copia esta llave:", SY.token); } };
+  const o = $("#syOff"); if(o) o.onclick = () => { if(confirm("¿Desconectar este dispositivo? Tus datos quedan aquí, pero dejan de sincronizarse.")){ disconnectSync(); renderSettings(); } };
 }
 function download(name, text, type){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
 
 /* ============ Inicio ============ */
 (async()=>{
   try{ IDB.db = await idbOpen(); const v = await idbGet(KEY); if(v) S = normalize(JSON.parse(v)); else if(S.collection.length||S.decks.length) await idbPut(KEY, JSON.stringify(S)); }catch(e){ IDB.db = null; }
+  applyStyle(); $("#styleBtn").onclick = cycleStyle;
   try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist(); }catch(e){}
   // en el celular la app no hace zoom con pellizco ni doble toque
   ["gesturestart","gesturechange"].forEach(ev => document.addEventListener(ev, e => e.preventDefault(), {passive:false}));
@@ -2385,6 +2634,10 @@ function download(name, text, type){ const a=document.createElement("a"); a.href
   route(); $("#app").dataset.ok="1";
   if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(()=>{});
   try{ recordValue(); }catch(e){}
+  if(SY.token){ getBase().then(() => syncNow()); }
+  document.addEventListener("visibilitychange", () => { if(document.visibilityState === "visible") syncNow(); });
+  window.addEventListener("online", () => syncNow());
+  setInterval(() => { if(document.visibilityState === "visible") syncNow(); }, 45000);
   loadSets().then(()=>{ if(SETS_NET && !document.querySelector("input:focus,textarea:focus,.setpop:not([hidden])")) route(); });
 })();
 </script>
