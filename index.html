@@ -416,6 +416,63 @@ a.stat{color:inherit;text-decoration:none}
 .tablewrap{overflow-x:auto}
 .loading{color:var(--muted);padding:20px 0}
 a{color:var(--accent)}
+
+/* formatos y consejos */
+.fmtchips{display:flex;flex-wrap:wrap;gap:6px}
+.fmtchip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.fmtchip b{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:11px;color:#fff}
+.fmtchip.ok b{background:var(--ok)} .fmtchip.no{border-color:color-mix(in srgb,var(--bad) 45%,var(--line));color:var(--bad)} .fmtchip.no b{background:var(--bad)}
+.fmtchip .ms{width:15px;height:15px}
+.advice{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.advice li{font-size:14px;padding:7px 10px;border-radius:8px;border-left:3px solid var(--line);background:var(--surface-2)}
+.advice li.bad{border-color:var(--bad)} .advice li.warn{border-color:var(--warn)} .advice li.tip{border-color:var(--ok)}
+/* lista de deseos */
+.wishbox>summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.wishbox>summary::-webkit-details-marker{display:none}
+.wishbox>summary::after{content:"▾";margin-left:auto;color:var(--muted)}
+.wishbox[open]>summary::after{content:"▴"}
+.wishlist{display:grid;gap:8px;margin-top:10px}
+.wishrow{display:grid;grid-template-columns:40px minmax(0,1fr) auto auto;gap:10px;align-items:center}
+.wishrow .cimg{width:40px;cursor:pointer}
+.wishrow .nm{cursor:pointer;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wishav{font-size:14px;background:color-mix(in srgb,#f5b301 25%,var(--surface))}
+/* reglas */
+.rsearch input{width:100%;font-size:16px;padding:12px 14px;border-radius:12px}
+.rtabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.rule{border-bottom:1px solid var(--line);padding:10px 2px;display:grid;gap:4px}
+.rule.focus{background:var(--accent-soft);border-radius:10px;padding:10px;border-bottom-color:transparent}
+.rhead{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.rnum{font:600 13px var(--mono);color:var(--accent);cursor:pointer}
+.rsec{font-size:12px;color:var(--muted);cursor:pointer}
+.rtext{font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+.rtext mark,.gl mark{background:color-mix(in srgb,#f5b301 40%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.rref{color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.rtitle{font-size:18px;margin:12px 0 4px}
+.rnav{gap:6px;flex-wrap:wrap}
+.rindex{display:grid;gap:10px}
+.rindex summary{cursor:pointer;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.rseclist{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 14px;margin-top:8px}
+.rseclist a{cursor:pointer;padding:5px 0;font-size:14px;color:var(--ink)}
+.gloss{display:grid;gap:8px;margin-bottom:12px}
+.gl{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}
+.bangrid{margin-top:4px}
+/* noticias */
+.ntag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:2px 8px;border-radius:999px;background:var(--line);color:var(--ink)}
+.news.n-reglas .ntag{background:color-mix(in srgb,#2a77bd 22%,transparent);color:#2a77bd}
+.news.n-baneos .ntag{background:color-mix(in srgb,var(--bad) 20%,transparent);color:var(--bad)}
+.news.n-reglas{box-shadow:inset 3px 0 0 #2a77bd}.news.n-baneos{box-shadow:inset 3px 0 0 var(--bad)}
+/* preguntas al asistente */
+.askbox textarea{width:100%;min-height:74px;font:16px/1.45 var(--body);padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);resize:vertical}
+.aqbar{gap:8px;flex-wrap:wrap}.aqbar a.btn{text-decoration:none;color:inherit}.aqbar a.btn.primary{color:var(--accent-ink)}.aqbar select{flex:1 1 200px;min-width:0}
+.chatlog{display:grid;gap:10px;max-height:min(60vh,560px);overflow:auto;padding:2px}
+.msg{padding:10px 13px;border-radius:12px;font-size:15px;line-height:1.5;max-width:100%;overflow-wrap:anywhere}
+.msg.me{background:var(--accent-soft);justify-self:end;max-width:88%}
+.msg.bot{background:var(--surface-2)}
+.msg.err{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+.msg p{margin:0 0 8px}.msg p:last-child{margin:0}.msg ul,.msg ol{margin:4px 0 8px;padding-left:20px}.msg li{margin:3px 0}.msg h5{margin:8px 0 4px;font-size:15px}
+.msg .loading{padding:0}
+.cardlink{color:var(--accent);font-weight:600;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+@media (max-width:520px){ .rseclist{grid-template-columns:1fr} .wishrow{grid-template-columns:36px minmax(0,1fr) auto auto;gap:8px} }
 </style>
 </head>
 <body>
@@ -431,6 +488,7 @@ a{color:var(--accent)}
   </nav>
   <span class="save-state" id="saveState"></span>
   <button class="stylebtn" id="styleBtn" type="button" aria-label="Cambiar estilo" title="Cambiar estilo"><span></span><span></span><span></span></button>
+  <a class="gearbtn" id="rulesBtn" href="#reglas" aria-label="Reglas" title="Reglas del juego"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7.5h6M9 11h4"/></svg></a>
   <a class="gearbtn" id="gearBtn" href="#ajustes" aria-label="Ajustes" title="Ajustes"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></a>
 </div></header>
 <main class="wrap" id="app"><div class="jsfail"><h2>La app no está corriendo aquí</h2><p>Si ves este mensaje, el programa donde abriste el archivo no ejecuta la app (pasa en la vista previa de Claude, de Mail o de Finder). Descarga <b>grimorio.html</b> y ábrelo con Chrome o Safari: clic derecho → Abrir con → Google Chrome.</p></div></main>
@@ -444,7 +502,7 @@ window.addEventListener("error", e => { const a=document.getElementById("app"); 
 "use strict";
 /* ============ Estado y guardado ============ */
 const KEY = "grimorio.v1";
-const blank = () => ({ v:1, cards:{}, collection:[], decks:[], log:[], settings:{ pen:3.75, showPen:true, style:"clasico" } });
+const blank = () => ({ v:1, cards:{}, collection:[], decks:[], log:[], wish:[], settings:{ pen:3.75, showPen:true, style:"clasico" } });
 const normalize = s => Object.assign(blank(), s, {settings:Object.assign(blank().settings, s.settings||{})});
 let S = load();
 applyStyle();
@@ -495,7 +553,7 @@ let SY = (() => { try{ return JSON.parse(localStorage.getItem(SYNC_LS)) || {}; }
 const SYNC = { busy:false, again:false, timer:null, quiet:false, status:"", err:"", baseJ:null };
 const J = o => JSON.stringify(o);
 function saveSY(){ try{ localStorage.setItem(SYNC_LS, J(SY)); }catch(e){} }
-function syncPayload(){ return { collection:S.collection||[], decks:S.decks||[], settings:S.settings||{}, history:S.history||[], log:S.log||[] }; }
+function syncPayload(){ return { collection:S.collection||[], decks:S.decks||[], settings:S.settings||{}, history:S.history||[], log:S.log||[], wish:S.wish||[] }; }
 function scheduleSync(){
   if(!SY.token || SYNC.quiet) return;
   clearTimeout(SYNC.timer);
@@ -537,11 +595,12 @@ function mergePayload(b, l, r){
     decks: merge3list(b && b.decks, l.decks, r.decks, d => d.id),
     settings: merge3obj(b && b.settings, l.settings, r.settings, !b),
     history: merge3list(b && b.history, l.history, r.history, h => h.d).sort((x,y) => String(x.d).localeCompare(String(y.d))),
+    wish: merge3list(b && b.wish, l.wish, r.wish, w => w.name),
     log: merge3list(b && b.log, l.log, r.log, x => x.t + "|" + (x.id||"lote")).sort((x,y) => x.t - y.t).slice(-1500),
   };
 }
 function applyPayload(p){
-  S.collection = p.collection || []; S.decks = p.decks || []; S.history = p.history || []; S.log = p.log || [];
+  S.collection = p.collection || []; S.decks = p.decks || []; S.history = p.history || []; S.log = p.log || []; S.wish = p.wish || [];
   S.settings = Object.assign(blank().settings, p.settings || {}); OWN = null; applyStyle();
 }
 async function gh(path, opt = {}){
@@ -658,7 +717,7 @@ function slim(c){
     img:iu.normal||"", sm:iu.small||iu.normal||"", art:iu.art_crop||"",
     faces: c.image_uris ? [] : f.filter(x=>x.image_uris).map(x=>({name:x.name, img:x.image_uris.normal})),
     text: c.oracle_text != null ? c.oracle_text : f.map(x => x.name + "\n" + (x.oracle_text||"")).join("\n\n"),
-    prices: c.prices || {}, legal:{ standard:(c.legalities||{}).standard, commander:(c.legalities||{}).commander },
+    prices: c.prices || {}, legal:Object.fromEntries(["standard","commander","pioneer","modern","pauper","legacy","standardbrawl","vintage"].map(k=>[k,(c.legalities||{})[k]])),
     uri:c.scryfall_uri, gc:!!c.game_changer, rank:c.edhrec_rank??null, links:{gatherer:(c.related_uris||{}).gatherer, edhrec:(c.related_uris||{}).edhrec, tcg:(c.purchase_uris||{}).tcgplayer, cm:(c.purchase_uris||{}).cardmarket, ck:(c.purchase_uris||{}).cardkingdom}, prints:c.prints_search_uri, finishes:c.finishes||[], rel:c.released_at||"", upd:Date.now()
   };
 }
@@ -840,7 +899,7 @@ function describeHtml(cards, cmd){ const ds = describeDeck(cards, cmd);
   return `<div class="box"><h4>Jugabilidad y temática</h4><div class="tagrow">${ds.tags.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div><p style="margin:6px 0 0">${esc(ds.text)}</p></div>`; }
 
 /* ============ Router ============ */
-const views = { inicio:renderHome, tienda:renderStore, buscar:renderSearch, coleccion:renderCollection, escanear:renderScan, decks:renderDecks, asistente:renderAssistant, ajustes:renderSettings };
+const views = { inicio:renderHome, tienda:renderStore, buscar:renderSearch, coleccion:renderCollection, escanear:renderScan, decks:renderDecks, asistente:renderAssistant, ajustes:renderSettings, reglas:renderRules };
 let currentDeck = null;
 function route(){
   let h = location.hash.replace("#","") || "inicio";
@@ -848,6 +907,7 @@ function route(){
   if(!views[h]) h = "inicio";
   $$("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.view===h ? "page" : "false"));
   $("#gearBtn").setAttribute("aria-current", h==="ajustes" ? "page" : "false");
+  $("#rulesBtn").setAttribute("aria-current", h==="reglas" ? "page" : "false");
   views[h]();
 }
 window.addEventListener("hashchange", route);
@@ -862,15 +922,8 @@ const CONS = [
   { name:"MagicCon: Amsterdam", city:"Ámsterdam, Países Bajos", start:"2027-12-03T08:00:00Z", end:"2027-12-05T21:00:00Z", days:"3–5 dic 2027" },
 ].map(e => { const s = new Date(e.start); return { ...e, s, e2:new Date(e.end), saleD: e.sale ? new Date(e.sale) : new Date(s.getTime() - 25*864e5), est: !e.sale }; });
 // Noticias revisadas a mano (fecha de revisión en NEWS_CHECKED)
-const NEWS_CHECKED = "6 nov 2026";
-const NEWS = [
-  { d:"2026-11-13", t:"Mystery Booster Commander debuta en MagicCon: Atlanta", x:"Sobres de 20 cartas con 60 comandantes nuevos. No llega a tiendas: solo se vende en MagicCons y en los Festival in a Box de Secret Lair.", u:"https://magic.wizards.com/en/news/announcements/secret-lair-heads-south-with-festival-in-a-box-atlanta-2026-and-mystery-booster-commander-edition", s:"Wizards" },
-  { d:"2026-11-13", t:"Sale Star Trek (presentación 6–12 nov)", x:"Set de Universes Beyond con 4 mazos de Commander preconstruidos.", u:"https://playgroup.gg/sets", s:"Playgroup" },
-  { d:"2026-10-19", t:"El Festival in a Box de Atlanta se agotó en ~20 minutos", x:"Costaba $249.99 (caja de 24 sobres de Mystery Booster Commander + Secret Lair + promos). En reventa está entre $450 y $700.", u:"https://draftsim.com/mtg-festival-in-a-box-debacle/", s:"Draftsim" },
-  { d:"2026-11-05", t:"Secret Lair envía a Perú con aranceles pagados", x:"La tienda de EE. UU. incluye Perú y paga los impuestos de importación en pedidos de menos de $2,500 (DDP). Envío gratis desde $99.", u:"https://secretlair-support.wizards.com/hc/en-us/articles/45485844120084-Shipping-Delivery-and-Customs-FAQ", s:"Secret Lair" },
-  { d:"2027-02-05", t:"Sets de 2027 anunciados", x:"Nauctis: The Sunken Realm (5 feb), Marvel: Darkhold Destiny (9 abr), Kamigawa: Titanbreach (4 jun) y Zhalfir (1 oct). Habrá dos sets más de Universes Beyond sin nombre todavía.", u:"https://playgroup.gg/sets", s:"Playgroup" },
-  { d:"2027-02-26", t:"Calendario de MagicCon 2027", x:"Detroit (26–28 feb), Tokio (14–16 may), Las Vegas (27–29 ago) y Ámsterdam (3–5 dic). Cada una debería tener su Festival in a Box.", u:"https://magic.wizards.com/en/news/announcements/magiccon-heads-to-japan-europe-and-the-us-in-2027", s:"Wizards" },
-];
+const NEWS_CHECKED = "7 nov 2026";
+const NEWS = [{"d": "2026-11-30","k": "baneos","t": "Próximo anuncio de baneos: 30 de noviembre","x": "Wizards publica el siguiente anuncio de cartas baneadas y restringidas el 30 de noviembre de 2026. Aquí aparecerá lo que cambie.","u": "https://magic.wizards.com/en/banned-restricted-list","s": "Wizards"},{"d": "2026-11-06","k": "reglas","t": "Reglas nuevas por Star Trek","x": "Las Reglas Completas se actualizaron el 6 de noviembre: nuevas palabras clave 'face a dilemma', 'assimilate' y 'beam me up', la regla 508.4e (criaturas que entran giradas y atacando) y la 208.3 aclara la fuerza y resistencia fuera del campo de batalla. Werewolf Pack Leader cambia su texto: ahora 'es un Werewolf'. Ya están en la sección Reglas de la app.","u": "https://magic.wizards.com/en/news/announcements/star-trek-update-bulletin","s": "Wizards"},{"d": "2026-10-12","k": "baneos","t": "Anuncio de baneos del 12 de octubre: sin cambios en papel","x": "No cambió ningún formato de cartas físicas (Commander, Standard, Modern, etc. siguen igual). Solo hubo cambios en Competitive Brawl de MTG Arena: Yuriko, Spider-Man 2099 y Light-Paws quedan baneados como comandantes.","u": "https://magic.wizards.com/en/news/announcements/banned-and-restricted-october-12-2026","s": "Wizards"},{"d": "2026-11-13","k": "producto","t": "Mystery Booster Commander debuta en MagicCon: Atlanta","x": "Sobres de 20 cartas con 60 comandantes nuevos. No llega a tiendas: solo se vende en MagicCons y en los Festival in a Box de Secret Lair.","u": "https://magic.wizards.com/en/news/announcements/secret-lair-heads-south-with-festival-in-a-box-atlanta-2026-and-mystery-booster-commander-edition","s": "Wizards"},{"d": "2026-11-13","k": "producto","t": "Sale Star Trek (presentación 6–12 nov)","x": "Set de Universes Beyond con 4 mazos de Commander preconstruidos.","u": "https://playgroup.gg/sets","s": "Playgroup"},{"d": "2026-10-19","k": "producto","t": "El Festival in a Box de Atlanta se agotó en ~20 minutos","x": "Costaba $249.99 (caja de 24 sobres de Mystery Booster Commander + Secret Lair + promos). En reventa está entre $450 y $700.","u": "https://draftsim.com/mtg-festival-in-a-box-debacle/","s": "Draftsim"},{"d": "2026-11-05","k": "producto","t": "Secret Lair envía a Perú con aranceles pagados","x": "La tienda de EE. UU. incluye Perú y paga los impuestos de importación en pedidos de menos de $2,500 (DDP). Envío gratis desde $99.","u": "https://secretlair-support.wizards.com/hc/en-us/articles/45485844120084-Shipping-Delivery-and-Customs-FAQ","s": "Secret Lair"},{"d": "2027-02-05","k": "producto","t": "Sets de 2027 anunciados","x": "Nauctis: The Sunken Realm (5 feb), Marvel: Darkhold Destiny (9 abr), Kamigawa: Titanbreach (4 jun) y Zhalfir (1 oct). Habrá dos sets más de Universes Beyond sin nombre todavía.","u": "https://playgroup.gg/sets","s": "Playgroup"},{"d": "2027-02-26","k": "producto","t": "Calendario de MagicCon 2027","x": "Detroit (26–28 feb), Tokio (14–16 may), Las Vegas (27–29 ago) y Ámsterdam (3–5 dic). Cada una debería tener su Festival in a Box.","u": "https://magic.wizards.com/en/news/announcements/magiccon-heads-to-japan-europe-and-the-us-in-2027","s": "Wizards"}];
 const FIB_STEPS = [
   ["Crea tu Wizards Account", `En <a href="https://myaccounts.wizards.com/" target="_blank" rel="noopener">myaccounts.wizards.com</a> con tu correo y una contraseña, y confirma el correo que te llega.`],
   ["Conéctala a Secret Lair", `Entra a <a href="https://secretlair.wizards.com/" target="_blank" rel="noopener">secretlair.wizards.com</a>, elige la tienda de <b>Estados Unidos</b> (la que envía a Perú), toca el ícono de arriba a la derecha y autoriza tu Wizards Account.`],
@@ -901,7 +954,6 @@ function renderHome(){
   const building = S.decks.filter(d=>deckStatus(d)!=="built");
   const today = TODAY();
   const upcoming = (UPCOMING||[]).filter(s=>s.r>=today).slice(0,8);
-  const news = NEWS.slice().sort((a,b)=>Math.abs(new Date(a.d)-now)-Math.abs(new Date(b.d)-now));
   $("#app").innerHTML = `
     <div class="home">
       <section class="hhero">
@@ -934,9 +986,7 @@ function renderHome(){
               : `<p class="hint">${SETS ? "Scryfall no tiene sets próximos cargados." : "Cargando desde Scryfall…"}</p>`}</section>
         </div>
       </div>
-      <section class="box" style="margin-top:14px"><h4>Noticias importantes <span class="hint" style="text-transform:none;letter-spacing:0;font-weight:400">· revisadas el ${NEWS_CHECKED}</span></h4>
-        <div class="newslist">${news.map(n=>`<article class="news"><div class="hint">${shortDate(new Date(n.d+"T12:00:00Z"))}${new Date(n.d)>now?" · próximamente":""}</div><b>${esc(n.t)}</b><p>${esc(n.x)}</p><a href="${esc(n.u)}" target="_blank" rel="noopener">Leer en ${esc(n.s)} ↗</a></article>`).join("")}</div>
-        <p class="hint" style="margin:8px 0 0">Para traer noticias nuevas, pídemelo en el chat y las actualizo.</p></section>
+      ${newsHtml()}
       <section class="stats" style="margin-top:14px">
         <a class="stat" href="#coleccion"><div class="k">Tu colección</div><div class="v">${total.toLocaleString("es-PE")}</div><div class="s">cartas · ${fmtUsd(value)}</div></a>
         <a class="stat" href="#decks"><div class="k">Decks</div><div class="v">${S.decks.length}</div><div class="s">${building.length} en construcción</div></a>
@@ -945,6 +995,8 @@ function renderHome(){
     </div>`;
   $$("[data-fib]").forEach(cb => cb.onchange = () => { const s = new Set(S.settings.fibDone||[]); cb.checked ? s.add(+cb.dataset.fib) : s.delete(+cb.dataset.fib); S.settings.fibDone = [...s]; save(); renderHome(); });
   bindQuickSearch(); $$(".vchart ~ div [data-open], .box [data-open]").forEach(el => { if(!el.onclick) el.onclick = () => openCard(el.dataset.open); });
+  $$("[data-rtab-go]").forEach(a => a.onclick = () => { RU.tab = a.dataset.rtabGo; RU.sec = null; RU.focus = null; });
+  if(!NW.tried) loadNews().then(ch => { if(ch && (location.hash.replace("#","") || "inicio") === "inicio" && !(document.activeElement && document.activeElement.id === "qsIn")) renderHome(); });
   homeClock(); clearInterval(homeTimer); homeTimer = setInterval(homeClock, 1000);
   if(!SETS) loadSets().then(()=>{ if(location.hash.replace("#","")==="inicio" || !location.hash) renderHome(); });
 }
@@ -967,7 +1019,7 @@ function quickResultHtml(){
       <div class="qsline ${have?"yes":"no"}">${have ? `✓ Tienes ${have} ${have>1?"copias":"copia"}` : "✗ No la tienes"}</div>
       <div>${used.length ? `En ${used.length} deck${used.length>1?"s":""}: ${used.map(d=>`<a href="#deck-${d.id}">${esc(d.name)}</a>`).join(", ")}` : `<span class="hint">No está en ningún deck</span>`}</div>
       <div>${priceHtml(v)} ${S.settings.showPen?`<span class="hint">≈ ${fmtPen(v)}</span>`:""} <span class="hint">· edición más barata ${setBadge(c)}</span></div>
-      <div class="row" style="gap:6px"><button class="btn small" id="qsOpen">Ver ficha</button><button class="btn small" id="qsAdd">+1 a mi colección</button></div>
+      <div class="row" style="gap:6px"><button class="btn small" id="qsOpen">Ver ficha</button><button class="btn small" id="qsAdd">+1 a mi colección</button><button class="btn small" id="qsWish">${inWish(c.name)?"⭐ En tu lista":"⭐ La quiero"}</button></div>
     </div></div>`;
 }
 function bindQuickSearch(){
@@ -991,6 +1043,7 @@ function bindQuickSearch(){
 function bindQuickResult(){
   const c = QS.card; if(!c) return;
   if($("#qsOpen")) $("#qsOpen").onclick = () => openCard(c.id);
+  if($("#qsWish")) $("#qsWish").onclick = () => { if(inWish(c.name)) removeWish(c.name); else { addWish(c, 1); toast(`⭐ ${c.name} agregada a tu lista de deseos`); } $("#qsOut").innerHTML = quickResultHtml(); bindQuickResult(); };
   if($("#qsAdd")) $("#qsAdd").onclick = () => { addToCollection(c, 1, false, "Buscador rápido"); toast(`${c.name} agregada a tu colección`); $("#qsOut").innerHTML = quickResultHtml(); bindQuickResult(); };
   $$("#qsOut [data-open]").forEach(el => el.onclick = () => openCard(el.dataset.open));
 }
@@ -999,12 +1052,17 @@ function bindQuickResult(){
 const TS = { group:"color", colors:[], rar:[], type:"", cmcMax:"", built:false, sort:"price", q:"", bought:[], quotes:{} };
 const COLOR_GROUPS = [["W","Blanco"],["U","Azul"],["B","Negro"],["R","Rojo"],["G","Verde"],["M","Multicolor"],["C","Incoloro / artefactos"],["L","Tierras"]];
 function colorGroupOf(c){ if(/Land/.test(c.type.split("//")[0])) return "L"; const cc = c.col || c.ci; return !cc.length ? "C" : cc.length>1 ? "M" : cc[0]; }
+const WISH = { id:"__wish", name:"Lista de deseos", wish:true, cards:[], commander:null };
+function wishList(){ return S.wish || (S.wish = []); }
+function addWish(c, qty){ keep(c); const w = wishList().find(x => x.name === c.name); if(w) w.qty = Math.max(w.qty, qty||1); else wishList().unshift({ name:c.name, id:c.id, qty:qty||1, added:Date.now() }); save(); }
+function removeWish(name){ S.wish = wishList().filter(x => x.name !== name); save(); }
+function inWish(name){ return wishList().some(x => x.name === name); }
 const DECK_RING = ["#e2a640","#7c5cff","#22a06b","#e5484d","#2a77bd","#d6409f","#12a594","#f76b15","#8d6e63","#5b6376"];
-function deckRing(d){ const i = S.decks.indexOf(d); return DECK_RING[(i<0?0:i) % DECK_RING.length]; }
-function deckAvatar(d, size){ const cmd = d.commander && card(d.commander); const ring = deckRing(d); const s = size||26;
+function deckRing(d){ if(d && d.wish) return "#f5b301"; const i = S.decks.indexOf(d); return DECK_RING[(i<0?0:i) % DECK_RING.length]; }
+function deckAvatar(d, size){ if(d && d.wish) return `<span class="dav wishav" style="--ring:#f5b301;width:${size||26}px;height:${size||26}px" title="Lista de deseos: no es para un deck">⭐</span>`; const cmd = d.commander && card(d.commander); const ring = deckRing(d); const s = size||26;
   const img = cmd && (cmd.art || cmd.sm);
   return `<span class="dav" style="--ring:${ring};width:${s}px;height:${s}px" title="${esc(d.name)}${cmd?" · "+esc(cmd.name):""}">${img ? `<img src="${esc(img)}" alt="" loading="lazy">` : `<b>${esc((d.name||"?").trim()[0]||"?")}</b>`}</span>`; }
-function storeDeckPool(){ return S.decks.filter(d => TS.built || deckStatus(d)!=="built"); }
+function storeDeckPool(){ return [...(wishList().length ? [WISH] : []), ...S.decks.filter(d => TS.built || deckStatus(d)!=="built")]; }
 function storeSelected(){ const pool = storeDeckPool(); const sel = S.settings.storeDecks; return Array.isArray(sel) ? pool.filter(d => sel.includes(d.id)) : pool; }
 function storeMissing(){
   const byName = new Map(); Object.values(S.cards).forEach(c => { const o = byName.get(c.name); if(!o || (usdOf(c)??1e9) < (usdOf(o)??1e9)) byName.set(c.name, c); });
@@ -1012,6 +1070,7 @@ function storeMissing(){
   storeSelected().forEach(d => deckNeeds(d).forEach((q, name) => {
     const r = rows.get(name) || { name, need:0, decks:[] }; r.need += q; r.decks.push(d); rows.set(name, r); }));
   const out = [];
+  if(storeSelected().includes(WISH)) wishList().forEach(w => { const r = rows.get(w.name) || { name:w.name, need:0, decks:[] }; r.need = Math.max(r.need, w.qty); r.decks.push(WISH); rows.set(w.name, r); if(!byName.has(w.name) && card(w.id)) byName.set(w.name, card(w.id)); });
   rows.forEach(r => { const miss = r.need - ownedByName(r.name); const c = byName.get(r.name); if(miss > 0 && c) out.push({ ...r, miss, c, v: usdOf(c) }); });
   return out;
 }
@@ -1049,8 +1108,15 @@ function renderStore(){
     </div>
     <div class="box tsdecks"><h4 class="row" style="justify-content:space-between">¿Qué decks quieres completar? <span class="row" style="gap:6px;text-transform:none;letter-spacing:0"><button type="button" class="linkbtn" id="tsAll">Todos</button><button type="button" class="linkbtn" id="tsNone">Ninguno</button></span></h4>
       ${storeDeckPool().length ? `<div class="tsdecklist">${storeDeckPool().map(d => { const on = storeSelected().includes(d); const cmd = d.commander && card(d.commander); const p = deckProgress(d);
-        return `<button type="button" class="tsdeck" data-tsd="${d.id}" aria-pressed="${on}" style="--ring:${deckRing(d)}">${deckAvatar(d, 34)}<span class="tsdk"><b>${esc(d.name)}</b><span class="hint">${cmd?esc(cmd.name):(d.format==="commander"?"Sin comandante":"Standard")} · ${p.pct}%</span></span><span class="tschk" aria-hidden="true">${on?"✓":""}</span></button>`; }).join("")}</div>`
+        return `<button type="button" class="tsdeck" data-tsd="${d.id}" aria-pressed="${on}" style="--ring:${deckRing(d)}">${deckAvatar(d, 34)}<span class="tsdk"><b>${esc(d.name)}</b><span class="hint">${d.wish ? `${wishList().length} carta${wishList().length>1?"s":""} que quieres` : `${cmd?esc(cmd.name):(isCmdFmt(d)?"Sin comandante":FMT(d).n)} · ${p.pct}%`}</span></span><span class="tschk" aria-hidden="true">${on?"✓":""}</span></button>`; }).join("")}</div>`
         : `<p class="hint" style="margin:0">No tienes decks ${st.built?"":"en construcción "}todavía.</p>`}</div>
+    <details class="box wishbox" ${TS.wishOpen?"open":""}><summary><b>⭐ Mi lista de deseos</b> <span class="hint">(${wishList().length}) · cartas que quieres conseguir aunque no sean para un deck</span></summary>
+      <form class="row" id="wForm" style="margin-top:10px"><input type="search" id="wIn" list="wSug" placeholder="Nombre de la carta (en inglés)…" autocomplete="off" style="flex:1 1 200px;min-width:0" aria-label="Carta para la lista de deseos"><datalist id="wSug"></datalist><button class="btn primary">Agregar</button></form>
+      ${wishList().length ? `<div class="wishlist">${wishList().map(w => { const c = card(w.id); const own = ownedByName(w.name);
+        return `<div class="wishrow">${c?`<img class="cimg" loading="lazy" src="${esc(c.sm||c.img)}" alt="" data-open="${c.id}">`:"<span></span>"}<div class="tsmain"><b class="nm" ${c?`data-open="${c.id}"`:""}>${esc(w.name)}</b><span class="hint">${own?`ya tienes ${own}`:"no la tienes"}${c?" · "+priceHtml(usdOf(c)):""}</span></div>
+          <div class="qtyctl"><button type="button" data-wq="${esc(w.name)}|-1" aria-label="Menos">−</button><span class="price" style="min-width:18px;text-align:center">${w.qty}</span><button type="button" data-wq="${esc(w.name)}|1" aria-label="Más">+</button></div>
+          <button type="button" class="btn small ghost" data-wdel="${esc(w.name)}" aria-label="Quitar de la lista">✕</button></div>`; }).join("")}</div>` : `<p class="hint" style="margin:8px 0 0">Vacía. También puedes agregar cartas desde su ficha con ⭐ La quiero.</p>`}
+    </details>
     <div class="box tsfilters">
       <div class="row" style="gap:6px"><span class="lbl">Agrupar</span>${[["color","Color"],["rarity","Rareza"],["cmc","Coste"],["type","Tipo"],["deck","Deck"]].map(([k,l])=>`<button type="button" class="segbtn" data-tsg="${k}" aria-pressed="${st.group===k}">${l}</button>`).join("")}</div>
       <div class="row" style="gap:4px">${COLOR_GROUPS.map(([k,l])=>chip("tsc", k, st.colors.includes(k), "WUBRGC".includes(k)?symHtml(k):k==="M"?"Multi":"Tierras", l)).join("")}</div>
@@ -1086,10 +1152,18 @@ function renderStore(){
   $$("[data-tsd]").forEach(b => b.onclick = () => { const pool = storeDeckPool().map(d=>d.id); let sel = Array.isArray(S.settings.storeDecks) ? S.settings.storeDecks.filter(id=>S.decks.some(d=>d.id===id)) : pool.slice();
     const id = b.dataset.tsd; sel = sel.includes(id) ? sel.filter(x=>x!==id) : [...sel, id]; S.settings.storeDecks = sel; save(); rer(); });
   $("#tsAll").onclick = () => { S.settings.storeDecks = null; save(); rer(); };
+  $(".wishbox").ontoggle = e => { TS.wishOpen = e.target.open; };
+  let wt = null; $("#wIn").oninput = e => { clearTimeout(wt); const q = e.target.value.trim(); if(q.length < 2) return; wt = setTimeout(async () => { try{ const a = await sf(`/cards/autocomplete?q=${encodeURIComponent(q)}`); $("#wSug").innerHTML = a.data.slice(0,10).map(n=>`<option value="${esc(n)}">`).join(""); }catch(_){} }, 250); };
+  $("#wForm").onsubmit = async e => { e.preventDefault(); const t = $("#wIn").value.trim(); if(!t) return; const b = $("#wForm button"); b.disabled = true; b.textContent = "Buscando…";
+    const c0 = await findByName(t); if(!c0){ toast("No encontré esa carta"); b.disabled = false; b.textContent = "Agregar"; return; }
+    let c = c0; try{ const ch = await namedCheap(c0.name); if(ch) c = ch; }catch(_){}
+    addWish(c, 1); TS.wishOpen = true; if(Array.isArray(S.settings.storeDecks) && !S.settings.storeDecks.includes(WISH.id)) S.settings.storeDecks.push(WISH.id); toast(`⭐ ${c.name} agregada a tu lista de deseos`); rer(); };
+  $$("[data-wq]").forEach(b => b.onclick = () => { const [n, dlt] = b.dataset.wq.split("|"); const w = wishList().find(x=>x.name===n); if(!w) return; w.qty = Math.max(1, w.qty + +dlt); save(); rer(); });
+  $$("[data-wdel]").forEach(b => b.onclick = () => { removeWish(b.dataset.wdel); rer(); });
   $("#tsNone").onclick = () => { S.settings.storeDecks = []; save(); rer(); };
   $$("[data-quote]").forEach(inp => inp.oninput = () => { st.quotes[inp.dataset.quote] = inp.value; const r = list.find(x=>x.name===inp.dataset.quote); const v = $(`[data-verdict="${CSS.escape(inp.dataset.quote)}"]`); if(r && v) v.innerHTML = storeQuote(r); });
-  $$("[data-buy]").forEach(b => b.onclick = () => { const r = list.find(x=>x.name===b.dataset.buy); if(!r) return; addToCollection(r.c, r.miss, false, "Modo tienda"); st.bought.push({ name:r.name, id:r.c.id, qty:r.miss }); toast(`${r.miss}× ${r.name} agregada a tu colección`); rer(); });
-  $$("[data-undo]").forEach(b => b.onclick = () => { const x = st.bought[+b.dataset.undo]; const e = S.collection.find(e=>e.id===x.id && !e.foil); if(e){ e.qty -= x.qty; if(e.qty<=0) S.collection.splice(S.collection.indexOf(e),1); const li = (S.log||[]).map(l=>l.id===x.id&&l.src==="Modo tienda").lastIndexOf(true); if(li>=0) S.log.splice(li,1); save(); } st.bought.splice(+b.dataset.undo,1); rer(); });
+  $$("[data-buy]").forEach(b => b.onclick = () => { const r = list.find(x=>x.name===b.dataset.buy); if(!r) return; addToCollection(r.c, r.miss, false, "Modo tienda"); const w0 = wishList().find(x=>x.name===r.name); if(w0 && ownedByName(r.name) >= w0.qty) removeWish(r.name); st.bought.push({ name:r.name, id:r.c.id, qty:r.miss, wish:w0||null }); toast(`${r.miss}× ${r.name} agregada a tu colección`); rer(); });
+  $$("[data-undo]").forEach(b => b.onclick = () => { const x = st.bought[+b.dataset.undo]; const e = S.collection.find(e=>e.id===x.id && !e.foil); if(e){ e.qty -= x.qty; if(e.qty<=0) S.collection.splice(S.collection.indexOf(e),1); const li = (S.log||[]).map(l=>l.id===x.id&&l.src==="Modo tienda").lastIndexOf(true); if(li>=0) S.log.splice(li,1); save(); } if(x.wish && !inWish(x.name)){ wishList().unshift(x.wish); save(); } st.bought.splice(+b.dataset.undo,1); rer(); });
   $$("#app [data-open]").forEach(el => el.onclick = () => openCard(el.dataset.open));
   $("#tsCopy").onclick = () => copyText(keys.map(k=>`${label(k).replace(/<[^>]+>/g,"")}\n` + groups.get(k).map(r=>`${r.miss} ${r.name}`).join("\n")).join("\n\n"), "Lista copiada");
 }
@@ -1316,8 +1390,8 @@ function drawModal(){
   const m = modalCtx; if(!m) return; const c = card(m.id);
   const faces = c.faces.length ? c.faces : [{name:c.name, img:c.img}];
   const face = faces[m.face % faces.length];
-  const leg = k => { const v = c.legal[k]; const ok = v==="legal"; const label = {legal:"Legal",not_legal:"No legal",banned:"Baneada",restricted:"Restringida"}[v]||"—"; return `<span class="${ok?"legal-yes":"legal-no"}">${k==="standard"?"Standard":"Commander"}: ${label}</span>`; };
-  const deckOpts = S.decks.map(d=>`<option value="${d.id}">${esc(d.name)} (${d.format==="commander"?"Commander":"Standard"})</option>`).join("");
+  const leg = k => { const v = c.legal[k]; const ok = v==="legal"; const label = {legal:"Legal",not_legal:"No legal",banned:"Baneada",restricted:"Restringida"}[v]||"—"; return `<span class="${ok?"legal-yes":"legal-no"}">${(FORMATS[k]||{n:k}).n}: ${label}</span>`; };
+  const deckOpts = S.decks.map(d=>`<option value="${d.id}">${esc(d.name)} (${FMT(d).n})</option>`).join("");
   const own = S.collection.filter(e=>e.id===c.id);
   $("#modalRoot").innerHTML = `<div class="modal" id="modalBg"><div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(c.name)}">
     <button class="btn small ghost close" id="mClose" aria-label="Cerrar">✕</button>
@@ -1342,7 +1416,7 @@ function drawModal(){
       <div class="box"><h4>Agregar a mi colección</h4>
         <div class="row"><div class="qtyctl"><button type="button" id="mMinus" aria-label="Menos">−</button><input type="number" id="mQty" value="1" min="1" style="width:64px" aria-label="Cantidad"><button type="button" id="mPlus" aria-label="Más">+</button></div>
         <label class="row" style="gap:6px"><input type="checkbox" id="mFoil" ${m.foil?"checked":""}> Foil</label>
-        <button class="btn primary" id="mAdd">Agregar</button></div>
+        <button class="btn primary" id="mAdd">Agregar</button><button class="btn" type="button" id="mWish">${inWish(c.name)?"⭐ En tu lista de deseos":"⭐ La quiero"}</button></div>
         ${own.length?`<div class="hint">Ya tienes: ${own.map(e=>`${e.qty}${e.foil?" foil":""}`).join(" + ")} de esta edición.</div>`:""}
       </div>
       <div class="box"><h4>Agregar a un deck</h4>
@@ -1360,10 +1434,11 @@ function drawModal(){
   $("#mMinus").onclick = () => { const i=$("#mQty"); i.value=Math.max(1,(+i.value||1)-1); };
   $("#mPlus").onclick = () => { const i=$("#mQty"); i.value=(+i.value||0)+1; };
   $("#mFoil").onchange = e => { m.foil = e.target.checked; };
+  $("#mWish").onclick = () => { if(inWish(c.name)){ removeWish(c.name); toast("Quitada de tu lista de deseos"); } else { addWish(c, 1); toast(`⭐ ${c.name} agregada a tu lista de deseos`); } drawModal(); };
   $("#mAdd").onclick = () => { addToCollection(c, Math.max(1, +$("#mQty").value||1), $("#mFoil").checked, "Ficha de la carta"); toast(`Agregada a tu colección: ${c.name}`); drawModal(); };
   if($("#mDeckAdd")){
     $("#mDeckAdd").onclick = () => { const d = S.decks.find(x=>x.id===$("#mDeck").value); addToDeck(d, c, 1, $("#mBoard").value); toast(`Agregada a ${d.name}`); };
-    $("#mCmd").onclick = () => { const d = S.decks.find(x=>x.id===$("#mDeck").value); keep(c); d.commander = c.id; d.format="commander"; save(); toast(`${c.name} es ahora comandante de ${d.name}`); };
+    $("#mCmd").onclick = () => { const d = S.decks.find(x=>x.id===$("#mDeck").value); keep(c); d.commander = c.id; if(!isCmdFmt(d)) d.format="commander"; save(); toast(`${c.name} es ahora comandante de ${d.name}`); };
   }
   if($("#mGoDecks")) $("#mGoDecks").onclick = closeModal;
   if($("#mAssist")) $("#mAssist").onclick = () => { closeModal(); setAssistCommander(c); };
@@ -1676,7 +1751,7 @@ async function resolveLines(lines, cheap=true){
 function newDeck(name, format){ const d = { id:uid(), name, format, commander:null, cards:[], notes:"", created:Date.now() }; S.decks.unshift(d); save(); return d; }
 function addToDeck(d, c, qty=1, board="main"){
   keep(c);
-  if(board==="commander"){ d.commander=c.id; d.format="commander"; save(); return; }
+  if(board==="commander"){ d.commander=c.id; if(!isCmdFmt(d)) d.format="commander"; save(); return; }
   const e = d.cards.find(x=>x.id===c.id && x.board===board);
   if(e) e.qty+=qty; else d.cards.push({id:c.id, qty, board});
   save(); refreshIfVisible();
@@ -1708,13 +1783,13 @@ function deckUsage(){
 function progressBar(p){ return `<div class="pbar" role="progressbar" aria-valuenow="${p.pct}" aria-valuemin="0" aria-valuemax="100" aria-label="Cartas que tienes"><i style="width:${p.pct}%"></i></div>`; }
 function deckCardHtml(d){
   const cmd = d.commander && card(d.commander); const first = cmd || card((deckCards(d).sort((a,b)=>(usdOf(card(b.id))||0)-(usdOf(card(a.id))||0))[0]||{}).id);
-  const target = d.format==="commander"?100:60; const built = deckStatus(d)==="built"; const p = deckProgress(d);
+  const target = FMT(d).max || FMT(d).min; const built = deckStatus(d)==="built"; const p = deckProgress(d);
   const miss = missingFor(d); const missVal = miss.reduce((a,m)=>{ const c = Object.values(S.cards).find(x=>x.name===m.name); return a+(usdOf(c)||0)*m.n; },0);
   const ci = ["W","U","B","R","G"].filter(x => (cmd ? (cmd.ci||[]) : deckCards(d).flatMap(e => (card(e.id)||{}).ci||[])).includes(x));
   const dk = ci.length ? (ci.length === 1 ? `var(--m${ci[0]})` : `linear-gradient(90deg,${ci.map((x,i)=>`var(--m${x}) ${i*100/ci.length}% ${(i+1)*100/ci.length}%`).join(",")})`) : "var(--mC)";
   return `<button class="deck-card" data-deck="${d.id}" style="--dk:${dk};--dk1:var(--m${ci[0]||"C"})"><div class="art" style="background-image:url('${esc(first?first.art:"")}')"></div>
     <div class="info"><strong style="font-family:var(--display);font-size:17px">${esc(d.name)}</strong>
-    <span class="hint">${d.format==="commander"?"Commander":"Standard"}${cmd?" · "+esc(cmd.name):""}</span>
+    <span class="hint">${esc(FMT(d).n)}${cmd?" · "+esc(cmd.name):""}</span>
     <div class="row" style="justify-content:space-between"><span class="price">${deckCount(d)}/${target} cartas</span>${priceHtml(deckValue(d))}</div>
     ${built ? `<span class="okline" style="color:var(--ok);font-size:13px;font-weight:600">Armado ✓${p.pct<100?` · ojo: en tu colección faltan ${p.tot-p.have}`:""}</span>`
       : `${progressBar(p)}<div class="row" style="justify-content:space-between;font-size:13px"><span><b>${p.pct}%</b> de las cartas</span><span class="hint">faltan ${p.tot-p.have}${missVal?` · ${fmtUsd(missVal)}`:""}</span></div>`}
@@ -1775,7 +1850,7 @@ async function showAlternatives(d, name){
   const ci = cmd ? cmd.ci : [...new Set(d.cards.flatMap(e=>card(e.id)?card(e.id).ci:[]))];
   const role = roleOf(entry), kind = mainType(entry), p0 = usdOf(entry);
   const inDeck = new Set(d.cards.map(e=>card(e.id)&&card(e.id).name));
-  const fmt = d.format==="commander" ? "f:commander" : "f:standard";
+  const fmt = FMT(d).q;
   const base = `${fmt} id<=${(ci.join("")||"c").toLowerCase()} -!"${name.split(" // ")[0].replace(/"/g,"")}"`;
   const typeQ = {Creature:"t:creature",Instant:"(t:instant or t:sorcery)",Sorcery:"(t:instant or t:sorcery)",Artifact:"t:artifact",Enchantment:"t:enchantment",Planeswalker:"t:planeswalker",Land:"t:land",Battle:"t:battle"}[kind]||"";
   const roleQ = role==="theme" ? themeQFor(entry) : ROLE_Q[role];
@@ -1792,7 +1867,7 @@ async function showAlternatives(d, name){
       <div class="row" style="gap:16px;align-items:flex-start;flex-wrap:nowrap"><img class="cimg" src="${esc(entry.sm||entry.img)}" alt="" style="width:110px;flex:none">
         <div style="display:grid;gap:6px;min-width:0"><h2 style="font-size:22px">Alternativas para ${esc(name)}</h2>
         <span class="hint">${esc(TYPE_ES[kind])} · ${{theme:"carta del plan del deck",ramp:"rampa",draw:"robo",removal:"remoción",wipes:"barrido",lands:"tierra"}[role]} · coste ${entry.cmc} · ${fmtUsd(p0)}</span>
-        <span class="hint">Busqué cartas del mismo tipo, con la misma función y coste parecido, legales en ${d.format==="commander"?"Commander y dentro de los colores del comandante":"Standard"}.</span></div></div>
+        <span class="hint">Busqué cartas del mismo tipo, con la misma función y coste parecido, legales en ${esc(FMT(d).n)}${isCmdFmt(d)?" y dentro de los colores del comandante":""}.</span></div></div>
       ${mine.length?`<div><h3 style="font-size:16px;margin-bottom:8px">Ya las tienes en tu colección</h3>${tiles(mine,true)}</div>`:""}
       ${loading?`<p class="loading">Buscando alternativas en Scryfall…</p>`:`
         ${cheap.length?`<div><h3 style="font-size:16px;margin-bottom:8px">Más baratas</h3>${tiles(cheap.slice(0,12))}</div>`:""}
@@ -1825,11 +1900,12 @@ function renderDecks(){
     <div class="section-head" style="margin-top:0"><h2>Mis decks</h2><a class="btn" href="#tienda">🛒 Modo tienda</a><div class="seg" role="group" aria-label="Sección"><button type="button" id="tMine" aria-pressed="${DK.tab!=="compare"}">Mis decks</button><button type="button" id="tCmp" aria-pressed="${DK.tab==="compare"}">Comparar decks</button></div></div>
     <form class="box" id="dNew" style="margin-bottom:18px" ${DK.tab==="compare"?"hidden":""}><h4>Nuevo deck</h4>
       <div class="row"><input type="text" id="dName" placeholder="Nombre del deck" required style="flex:1 1 220px;min-width:0" aria-label="Nombre del deck">
-      <select id="dFmt" aria-label="Formato"><option value="commander">Commander</option><option value="standard">Standard</option></select>
+      <select id="dFmt" aria-label="Formato">${fmtOptions("commander")}</select>
       <button class="btn primary">Crear</button></div>
       <details><summary class="hint" style="cursor:pointer">Importar desde una lista (Moxfield, Arena, ManaBox)</summary>
         <textarea id="dList" placeholder="Commander&#10;1 The Theorist, Jace Beleren&#10;&#10;Deck&#10;1 Sol Ring&#10;1 Arcane Signet&#10;30 Island"></textarea>
         <p class="hint">Si la lista tiene una sección <code>Commander</code>, esa carta queda como comandante. <code>Sideboard</code> también se reconoce.</p></details>
+      <div class="hint" id="dFmtDesc">${esc(FORMATS.commander.desc)}</div>
       <span class="hint" id="dMsg"></span>
     </form>
     ${DK.tab==="compare" ? renderCompare() : renderDeckLists()}`;
@@ -1840,19 +1916,126 @@ function renderDecks(){
     location.hash = "deck-" + d.id; };
   $$("[data-deck]").forEach(b => b.onclick = () => location.hash = "deck-" + b.dataset.deck);
   $("#tMine").onclick = () => { DK.tab="mine"; renderDecks(); };
+  if($("#dFmt")) $("#dFmt").onchange = e => { $("#dFmtDesc").textContent = FORMATS[e.target.value].desc; };
   $("#tCmp").onclick = () => { DK.tab="compare"; renderDecks(); };
   if(DK.tab==="compare") bindCompare();
 }
 async function importIntoDeck(d, txt){
   const lines = parseList(txt); const r = await resolveLines(lines);
   r.found.forEach(({line,c}) => addToDeck(d, c, line.qty, line.board));
-  if(r.found.some(f=>f.line.board==="commander")) d.format="commander";
+  if(r.found.some(f=>f.line.board==="commander") && !isCmdFmt(d)) d.format="commander";
   return r;
 }
 const TYPE_ORDER = ["Creature","Planeswalker","Battle","Instant","Sorcery","Artifact","Enchantment","Land","Otros"];
 const TYPE_ES = {Creature:"Criaturas",Planeswalker:"Planeswalkers",Battle:"Batallas",Instant:"Instantáneos",Sorcery:"Conjuros",Artifact:"Artefactos",Enchantment:"Encantamientos",Land:"Tierras",Otros:"Otros"};
 function mainType(c){ const t = c.type.split("//")[0]; if(/Land/.test(t)) return "Land"; for(const k of TYPE_ORDER) if(t.includes(k)) return k; return "Otros"; }
-function deckWarnings(d){
+
+/* ============ Formatos de deck ============ */
+const FORMATS = {
+  commander:{ n:"Commander", min:100, max:100, copies:1, side:0, cmd:true, leg:"commander", L:[34,39], q:"f:commander",
+    desc:"100 cartas exactas contando al comandante. Solo 1 copia de cada carta (las tierras básicas sí pueden repetirse). Todas las cartas deben estar dentro de los colores del comandante." },
+  brawl:{ n:"Standard Brawl", min:60, max:60, copies:1, side:0, cmd:true, leg:"standardbrawl", L:[23,26], q:"f:standardbrawl",
+    desc:"60 cartas exactas contando al comandante (puede ser una criatura legendaria o un planeswalker). 1 copia de cada carta y solo cartas legales en Standard, dentro de los colores del comandante." },
+  standard:{ n:"Standard", min:60, copies:4, side:15, leg:"standard", L:[22,26], q:"f:standard",
+    desc:"Mínimo 60 cartas en el mazo principal. Hasta 4 copias de cada carta (salvo tierras básicas). Sideboard de hasta 15. Solo cartas de los sets de los últimos años." },
+  pioneer:{ n:"Pioneer", min:60, copies:4, side:15, leg:"pioneer", L:[22,26], q:"f:pioneer",
+    desc:"Mínimo 60 cartas. Hasta 4 copias de cada carta. Sideboard de hasta 15. Cartas desde Return to Ravnica (2012) en adelante." },
+  modern:{ n:"Modern", min:60, copies:4, side:15, leg:"modern", L:[19,25], q:"f:modern",
+    desc:"Mínimo 60 cartas. Hasta 4 copias de cada carta. Sideboard de hasta 15. Cartas desde Eighth Edition (2003) en adelante." },
+  pauper:{ n:"Pauper", min:60, copies:4, side:15, leg:"pauper", L:[18,24], q:"f:pauper",
+    desc:"Mínimo 60 cartas. Hasta 4 copias de cada carta. Sideboard de hasta 15. Solo cartas que hayan salido como comunes." },
+  legacy:{ n:"Legacy", min:60, copies:4, side:15, leg:"legacy", L:[18,24], q:"f:legacy",
+    desc:"Mínimo 60 cartas. Hasta 4 copias de cada carta. Sideboard de hasta 15. Casi todas las cartas de la historia, con su propia lista de baneadas." },
+};
+const FMT = d => FORMATS[d && d.format] || FORMATS.commander;
+const isCmdFmt = d => !!FMT(d).cmd;
+const fmtOptions = sel => Object.entries(FORMATS).map(([k,f]) => `<option value="${k}" ${sel===k?"selected":""}>${f.n}</option>`).join("");
+const NUMW = ["one","two","three","four","five","six","seven","eight","nine","ten"];
+function copyLimit(c, f){
+  if(/Basic Land/.test(c.type)) return Infinity; const t = c.text || "";
+  if(/any number of cards named/i.test(t)) return Infinity;
+  const m = t.match(/up to (one|two|three|four|five|six|seven|eight|nine|ten) cards named/i); if(m) return NUMW.indexOf(m[1].toLowerCase()) + 1;
+  return f.copies;
+}
+function canBeCommander(c, f){ const t = c.type.split("//")[0]; return /Legendary/.test(t) && (/Creature/.test(t) || (f.leg==="standardbrawl" && /Planeswalker/.test(t))) || /can be your commander/i.test(c.text||""); }
+function formatStatus(d){
+  const f = FMT(d), main = deckCards(d), side = deckCards(d,"side"), cmd = d.commander && card(d.commander);
+  const cnt = deckCount(d), sideN = side.reduce((a,e)=>a+e.qty,0);
+  const checks = [], warns = [];
+  // tamaño
+  const sizeOk = f.max ? cnt === f.max : cnt >= f.min;
+  checks.push({ ok:sizeOk, t:`${cnt} / ${f.max ? f.max : f.min+"+"} cartas`, d: f.max ? `Debe tener exactamente ${f.max}${f.cmd?" contando al comandante":""}.` : `Mínimo ${f.min} en el mazo principal.` });
+  if(!sizeOk) warns.push(f.max ? `Tiene ${cnt} cartas; ${f.n} pide exactamente ${f.max}${f.cmd?" contando al comandante":""}${cnt<f.max?` (faltan ${f.max-cnt})`:` (sobran ${cnt-f.max})`}.` : `Tiene ${cnt} cartas en el main; ${f.n} pide mínimo ${f.min} (faltan ${f.min-cnt}).`);
+  // copias
+  const byName = new Map(); [...main, ...side].forEach(e => { const c = card(e.id); const r = byName.get(c.name) || { c, q:0 }; r.q += e.qty; byName.set(c.name, r); });
+  if(cmd){ const r = byName.get(cmd.name) || { c:cmd, q:0 }; r.q += 1; byName.set(cmd.name, r); }
+  const over = [...byName.values()].filter(r => r.q > copyLimit(r.c, f));
+  checks.push({ ok:!over.length, t: f.copies===1 ? "1 copia de cada carta" : `Máx. ${f.copies} copias`, d: f.copies===1 ? "Singleton: no se repiten cartas, salvo tierras básicas." : "No más de 4 copias de una misma carta, salvo tierras básicas." });
+  over.forEach(r => warns.push(`${r.c.name}: ${r.q} copias (máximo ${copyLimit(r.c, f)}).`));
+  // comandante e identidad de color
+  if(f.cmd){
+    const cmdOk = !!cmd && canBeCommander(cmd, f);
+    checks.push({ ok:cmdOk, t: cmd ? `Comandante: ${cmd.name}` : "Falta el comandante", d: f.leg==="standardbrawl" ? "Una criatura legendaria o un planeswalker." : "Una criatura legendaria (o una carta que diga que puede ser tu comandante)." });
+    if(!cmd) warns.push("Falta elegir comandante (abre una carta y toca Como comandante).");
+    else if(!canBeCommander(cmd, f)) warns.push(`${cmd.name} no puede ser comandante en ${f.n}.`);
+    if(cmd){ const ci = new Set(cmd.ci); const out = [...main, ...side].map(e=>card(e.id)).filter(c => c.ci.some(x => !ci.has(x)));
+      checks.push({ ok:!out.length, t:`Colores: ${cmd.ci.length ? cmd.ci.map(x=>symHtml(x)).join("") : symHtml("C")}`, html:true, d:"Todas las cartas deben estar dentro de la identidad de color del comandante." });
+      [...new Set(out.map(c=>c.name))].forEach(n => warns.push(`${n} está fuera de los colores del comandante.`)); }
+  }
+  // legalidad
+  const all = [...main, ...side].map(e=>card(e.id)); if(cmd) all.push(cmd);
+  const bad = [], unknown = new Set();
+  all.forEach(c => { const v = c.legal && c.legal[f.leg]; if(v == null) unknown.add(c.name); else if(v !== "legal" && v !== "restricted") bad.push([c.name, v]); });
+  checks.push({ ok:!bad.length, t: bad.length ? `${bad.length} no legales` : `Legales en ${f.n}`, d:"Según los datos de Scryfall (baneos y sets permitidos)." });
+  [...new Map(bad).entries()].forEach(([n,v]) => warns.push(`${n}: ${v==="banned"?"baneada":"no legal"} en ${f.n}.`));
+  if(unknown.size) warns.push(`No tengo datos de legalidad en ${f.n} de ${unknown.size} carta${unknown.size>1?"s":""}: toca "Actualizar precios" para traerlos.`);
+  // sideboard
+  if(f.side){ checks.push({ ok: sideN <= f.side, t:`Sideboard ${sideN}/${f.side}`, d:"Cartas para cambiar entre partidas de un match." }); if(sideN > f.side) warns.push(`El sideboard tiene ${sideN}; el máximo es ${f.side}.`); }
+  return { f, checks, warns:[...new Set(warns)] };
+}
+function deckAdvice(d){
+  const f = FMT(d), main = deckCards(d), cmd = d.commander && card(d.commander);
+  if(!main.length) return [];
+  const ent = main.map(e => ({ c:card(e.id), q:e.qty })); const b = balanceOf(ent); const out = [];
+  const cnt = deckCount(d), target = f.max || Math.max(f.min, cnt);
+  const st = formatStatus(d);
+  st.warns.filter(w => /baneada|no legal|fuera de los colores|copias \(máximo/.test(w)).slice(0,3).forEach(w => out.push({ k:"bad", t:"Corrige: " + w }));
+  // tierras según el coste promedio
+  const avg = b.avg || 0; let L;
+  if(f === FORMATS.commander) L = avg < 2.6 ? 35 : avg < 3.4 ? 37 : 38;
+  else { const base = avg < 2 ? f.L[0] : avg < 2.8 ? Math.round((f.L[0]+f.L[1])/2) : f.L[1]; L = Math.round(base * target / (f.max || 60)); }
+  if(b.lands < L - 1) out.push({ k:"warn", t:`Agrega ${L - b.lands} tierra${L-b.lands>1?"s":""}: con coste promedio ${avg.toFixed(1)} lo ideal son unas ${L} (tienes ${b.lands}).` });
+  else if(b.lands > L + 2) out.push({ k:"warn", t:`Tienes ${b.lands} tierras; con coste promedio ${avg.toFixed(1)} bastan unas ${L}. Cambia ${b.lands - L} por hechizos.` });
+  // curva
+  const nl = ent.filter(x => mainType(x.c) !== "Land");
+  const cheap = nl.filter(x => x.c.cmc <= 2).reduce((a,x)=>a+x.q,0), high = nl.filter(x => x.c.cmc >= (f.cmd && f.max===100 ? 6 : 5)).reduce((a,x)=>a+x.q,0);
+  const highMax = f.max === 100 ? 9 : 6, cheapMin = f.max === 100 ? 12 : 8;
+  if(high > highMax){ const ex = nl.filter(x => x.c.cmc >= (f.max===100?6:5)).sort((a,b)=>b.c.cmc-a.c.cmc).slice(0,3).map(x=>`${x.c.name} (${x.c.cmc})`).join(", ");
+    out.push({ k:"warn", t:`Tu curva es pesada: ${high} cartas de ${f.max===100?6:5}+ maná. Cambia ${high-highMax} por cartas más baratas; por ejemplo revisa ${ex}.` }); }
+  if(cheap < cheapMin) out.push({ k:"warn", t:`Pocas jugadas baratas: solo ${cheap} cartas de coste 1–2. Apunta a ${cheapMin} o más para no perder los primeros turnos.` });
+  // funciones
+  const goals = f.max === 100 ? { ramp:10, draw:9, removal:8, wipes:2 } : f.cmd ? { ramp:4, draw:4, removal:5, wipes:1 } : { ramp:0, draw:3, removal:6, wipes:0 };
+  if(b.ramp < goals.ramp) out.push({ k:"warn", t:`Rampa: tienes ${b.ramp}, lo recomendable es ${goals.ramp} (Sol Ring, Arcane Signet, tierras extra…).` });
+  if(b.draw < goals.draw) out.push({ k:"warn", t:`Robo de cartas: tienes ${b.draw}, apunta a ${goals.draw} para no quedarte sin recursos.` });
+  if(b.removal < goals.removal) out.push({ k:"warn", t:`Interacción: solo ${b.removal} cartas que quitan amenazas; lo sano son ${goals.removal} o más.` });
+  if(goals.wipes && b.wipes < goals.wipes) out.push({ k:"tip", t:`Considera ${goals.wipes - b.wipes} barrido${goals.wipes-b.wipes>1?"s":""} de mesa por si los rivales se escapan.` });
+  if(f.max === 100 && cmd){ const crT = 25; if(b.creatures < 12 && !/instant|sorcery|spell/i.test(cmd.text||"")) out.push({ k:"tip", t:`Solo ${b.creatures} criaturas: para la mayoría de comandantes conviene tener entre 20 y 30.` }); }
+  if(!f.cmd && !f.max){ const fours = [...new Map(nl.map(x=>[x.c.name,0])).keys()].length; if(fours > 22 && cnt >= 55) out.push({ k:"tip", t:`Tienes ${fours} cartas distintas: en formatos de 60 suele rendir más jugar 3–4 copias de tus mejores cartas para que salgan seguido.` }); }
+  return out;
+}
+function formatBoxHtml(d){
+  const st = formatStatus(d), f = st.f;
+  return `<div class="box fmtbox"><h4 class="row" style="justify-content:space-between">Reglas de ${esc(f.n)} ${st.checks.every(c=>c.ok) ? `<span class="fit ok">Todo en orden</span>` : `<span class="fit mid">${st.checks.filter(c=>!c.ok).length} por revisar</span>`}</h4>
+    <div class="fmtchips">${st.checks.map(c => `<span class="fmtchip ${c.ok?"ok":"no"}" title="${esc(c.d)}"><b aria-hidden="true">${c.ok?"✓":"!"}</b> ${c.html ? c.t : esc(c.t)}</span>`).join("")}</div>
+    <div class="hint">${esc(f.desc)}</div></div>`;
+}
+function adviceHtml(d){
+  const a = deckAdvice(d); if(!deckCards(d).length) return "";
+  return `<div class="box"><h4>Consejos para mejorarlo</h4>${a.length ? `<ul class="advice">${a.map(x=>`<li class="${x.k}">${esc(x.t)}</li>`).join("")}</ul>` : `<div class="okline" style="color:var(--ok);font-weight:600">Se ve bien armado y balanceado.</div>`}
+    <button class="btn small" type="button" id="dAsk">💬 Pregúntale al asistente por este deck</button></div>`;
+}
+function deckWarnings(d){ return formatStatus(d).warns; }
+function deckWarningsOld(d){
   const w=[]; const main = deckCards(d); const all=[...main]; const cnt = deckCount(d);
   const cmd = d.commander && card(d.commander);
   if(d.format==="commander"){
@@ -1888,7 +2071,7 @@ async function deckPdf(d, onProgress){
   // portada con la lista
   doc.setFont("helvetica","bold"); doc.setFontSize(20); doc.text(d.name.slice(0,60), 14, 20);
   doc.setFont("helvetica","normal"); doc.setFontSize(10);
-  doc.text(`${d.format==="commander"?"Commander":"Standard"} · ${deckCount(d)} cartas · aprox. ${fmtUsd(deckValue(d))} (${fmtPen(deckValue(d))})${cmd?" · Comandante: "+cmd.name:""}`.slice(0,120), 14, 27);
+  doc.text(`${FMT(d).n} · ${deckCount(d)} cartas · aprox. ${fmtUsd(deckValue(d))} (${fmtPen(deckValue(d))})${cmd?" · Comandante: "+cmd.name:""}`.slice(0,120), 14, 27);
   doc.setFontSize(8.5); let col=0, y=36, zone="";
   const lines=[]; entries.forEach(en=>{ if(en.zone!==zone){ zone=en.zone; lines.push({h:zone}); } lines.push({t:`${en.qty} ${en.c.name}`}); });
   for(const l of lines){ if(y>285){ col++; y=36; if(col>2){ doc.addPage(); col=0; } }
@@ -1924,7 +2107,7 @@ async function shareDeckPdf(d){
 }
 function deckTextForChat(d){
   const cmd = d.commander && card(d.commander);
-  let t = `*${d.name}*\n${d.format==="commander"?"Commander":"Standard"} · ${deckCount(d)} cartas · ${fmtUsd(deckValue(d))}\n`;
+  let t = `*${d.name}*\n${FMT(d).n} · ${deckCount(d)} cartas · ${fmtUsd(deckValue(d))}\n`;
   let zone=""; deckEntries(d).forEach(en=>{ if(en.zone!==zone){ zone=en.zone; t += `\n*${zone}*\n`; } t += `${en.qty} ${en.c.name}\n`; });
   return t;
 }
@@ -1999,9 +2182,9 @@ function renderDeck(d){
     <div class="row" style="margin-bottom:10px"><a href="#decks">← Mis decks</a></div>
     <div class="section-head" style="margin-top:0"><div style="display:grid;gap:4px;min-width:0">
       <h2 contenteditable="true" spellcheck="false" id="dTitle" title="Haz clic para renombrar" style="font-size:28px">${esc(d.name)}</h2>
-      <span class="hint">${d.format==="commander"?"Commander":"Standard"} · ${deckCount(d)} cartas · ${fmtUsd(deckValue(d))}${S.settings.showPen?" ≈ "+fmtPen(deckValue(d)):""}</span>
+      <span class="hint">${esc(FMT(d).n)} · ${deckCount(d)} cartas · ${fmtUsd(deckValue(d))}${S.settings.showPen?" ≈ "+fmtPen(deckValue(d)):""}</span>
       ${deckStatus(d)!=="built"?(()=>{ const p=deckProgress(d); return `<div class="row" style="gap:10px;max-width:420px">${progressBar(p)}<span style="font-size:13px;white-space:nowrap"><b>${p.pct}%</b> · faltan ${p.tot-p.have}</span></div>`; })():""}</div>
-      <div class="row"><select id="dFormat" aria-label="Formato"><option value="commander" ${d.format==="commander"?"selected":""}>Commander</option><option value="standard" ${d.format==="standard"?"selected":""}>Standard</option></select>
+      <div class="row"><select id="dFormat" aria-label="Formato">${fmtOptions(d.format)}</select>
       <a class="btn jump-miss" href="#" id="dJumpMiss">Lo que me falta</a><select id="dStatus" aria-label="Estado del deck"><option value="building" ${deckStatus(d)!=="built"?"selected":""}>En construcción</option><option value="built" ${deckStatus(d)==="built"?"selected":""}>Armado</option></select><div class="seg" role="group" aria-label="Vista del deck"><button type="button" id="vList" aria-pressed="${!visual}">Lista</button><button type="button" id="vVis" aria-pressed="${visual}">Visual</button></div><button class="btn" id="dShare">Enviar por WhatsApp</button><button class="btn" id="dExport">Copiar lista</button><button class="btn" id="dCheap" title="Cambia cada carta a su edición más barata que ya esté a la venta">Ediciones más baratas</button><button class="btn" id="dImportBtn">Pegar lista</button>${cmd?`<button class="btn" id="dAssist">Asistente</button>`:""}<button class="btn" id="dRefresh">Actualizar precios</button><button class="btn danger" id="dDel">Borrar</button></div></div>
     <div class="deck-layout">
       <div style="min-width:0">
@@ -2009,6 +2192,7 @@ function renderDeck(d){
           <div class="row"><button class="btn primary" id="shPdf">PDF con las imágenes de las cartas</button><a class="btn" id="shTxt" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(deckTextForChat(d))}">Solo la lista en texto</a></div>
           <div class="hint">El PDF tiene la lista en la primera página y luego todas las cartas a tamaño real, 9 por página, con "x2", "x15" en las repetidas. Mándalo como documento para que no pierda calidad.</div>
           <div class="hint" id="shMsg"></div></div>
+        ${formatBoxHtml(d)}
         <div class="row" style="margin-bottom:6px"><div class="ac" id="acBox"><input type="text" id="acIn" placeholder="Agregar carta: escribe el nombre…" autocomplete="off" aria-label="Agregar carta al deck"><ul id="acList" hidden></ul></div>
           <select id="acBoard" aria-label="Zona"><option value="main">Main</option><option value="side">Sideboard</option><option value="maybe">Quizás</option><option value="commander">Comandante</option></select></div>
         <div id="dImportBox" hidden class="box" style="margin:10px 0"><textarea id="dImportText" placeholder="1 Sol Ring&#10;1 Counterspell&#10;&#10;Sideboard&#10;2 Negate"></textarea><div class="row"><button class="btn primary" id="dImportGo">Agregar al deck</button><span class="hint" id="dImportMsg"></span></div></div>
@@ -2025,7 +2209,8 @@ function renderDeck(d){
           <div class="curve">${curve.map((n,i)=>`<div class="bar"><b>${n||""}</b><i style="height:${(n/maxC)*80}%"></i><span>${i===6?"6+":i}</span></div>`).join("")}</div>
           <div class="hint">Promedio ${avg.toFixed(2)} · ${lands} tierras · ${nonland} hechizos</div>
           <div class="row" style="gap:8px">${Object.entries(pips).filter(([,n])=>n).map(([k,n])=>`<span class="row" style="gap:3px">${symHtml(k)}<span class="price">${n}</span></span>`).join("")||`<span class="hint">Sin símbolos de color</span>`}</div></div>
-        ${d.format==="commander" && main.length ? describeHtml(main.map(e=>card(e.id)), cmd) + balanceHtml(balanceOf(main.map(e=>({c:card(e.id), q:e.qty})))) : ""}
+        ${adviceHtml(d)}
+        ${isCmdFmt(d) && main.length ? describeHtml(main.map(e=>card(e.id)), cmd) + balanceHtml(balanceOf(main.map(e=>({c:card(e.id), q:e.qty})))) : ""}
         <div class="box"><h4>Revisión del formato</h4><div class="warns">${warns.length?warns.slice(0,12).map(x=>`<div>• ${esc(x)}</div>`).join("")+(warns.length>12?`<div>…y ${warns.length-12} más</div>`:""):`<div class="okline">Todo en orden para ${d.format==="commander"?"Commander":"Standard"}.</div>`}</div></div>
         <div class="box" id="missBox"><h4>Lo que te falta</h4>${miss.length?`<div class="hint">${miss.length} cartas, aprox. ${fmtUsd(missVal)}${S.settings.showPen?" ≈ "+fmtPen(missVal):""}</div><div class="misslist">${miss.map(m=>{ const mc=Object.values(S.cards).find(x=>x.name===m.name); return `<div class="missrow"><span class="nm" data-open="${mc?mc.id:""}" data-peek="${esc(mc?mc.img:"")}">${m.n>1?m.n+" ":""}${esc(m.name)}</span><span class="price">${fmtUsd(mc?usdOf(mc):null)}</span><div class="row" style="gap:4px"><button class="btn small" data-got="${esc(m.name)}" data-n="${m.n}">Ya la tengo</button><button class="btn small" data-alt="${esc(m.name)}">Alternativas</button></div></div>`; }).join("")}</div><button class="btn small" id="dCopyMiss">Copiar lista de compras</button>`:`<div class="okline" style="color:var(--ok)">Tienes todas las cartas en tu colección.</div>`}</div>
       </aside>
@@ -2033,6 +2218,7 @@ function renderDeck(d){
   $("#dTitle").onblur = e => { d.name = e.target.textContent.trim()||d.name; save(); };
   $("#dTitle").onkeydown = e => { if(e.key==="Enter"){ e.preventDefault(); e.target.blur(); } };
   $("#dFormat").onchange = e => { d.format = e.target.value; save(); renderDeck(d); };
+  if($("#dAsk")) $("#dAsk").onclick = () => { AQ.deck = d.id; AQ.draft = "¿Qué cambiarías de este deck para que sea más sólido? Dime qué cartas sacar y cuáles poner (idealmente que tenga o que sean baratas)."; location.hash = "asistente"; };
   $("#dNotes").onchange = e => { d.notes = e.target.value; save(); };
   $("#dDel").onclick = () => { if(confirm(`¿Borrar el deck "${d.name}"? Las cartas de tu colección no se tocan.`)){ S.decks = S.decks.filter(x=>x!==d); save(); location.hash="decks"; } };
   $("#dExport").onclick = () => copyText(exportDeck(d), "Lista copiada");
@@ -2421,7 +2607,8 @@ function renderAssistant(){
   const total = cards.reduce((a,x)=>a+(usdOf(x)||0),0) + (c?(usdOf(c)||0):0);
   const owned = cards.filter(x=>ownedByName(x.name)>0).length;
   $("#app").innerHTML = `
-    <div class="section-head" style="margin-top:0"><div><h2>Asistente de Commander</h2><p class="hint" style="margin:4px 0 0">Elige un comandante y te muestro estilos de deck que puede jugar, con cartas, precios y links a mazos de otros jugadores.</p></div></div>
+    <section class="box askbox" id="askBox">${askBoxHtml()}</section>
+    <div class="section-head"><div><h2>Asistente de Commander</h2><p class="hint" style="margin:4px 0 0">Elige un comandante y te muestro estilos de deck que puede jugar, con cartas, precios y links a mazos de otros jugadores.</p></div></div>
     <div class="row" style="margin-bottom:14px"><div class="ac" id="aAcBox"><input type="text" id="aAc" placeholder="Nombre del comandante…" autocomplete="off" aria-label="Elegir comandante"><ul id="aAcList" hidden></ul></div>
       ${S.decks.some(d=>d.commander)?`<select id="aFromDeck" aria-label="Usar comandante de un deck"><option value="">Usar el de un deck…</option>${S.decks.filter(d=>d.commander&&card(d.commander)).map(d=>`<option value="${d.commander}">${esc(card(d.commander).name)} · ${esc(d.name)}</option>`).join("")}</select>`:""}</div>
     ${mergeBoxHtml()}
@@ -2470,7 +2657,7 @@ function renderAssistant(){
             <div class="grid">${g.cards.map(x=>tileHtml(x,{owned:ownedByName(x.name), sub:`<span class="n">${x.gc?`<span class="badge" title="Game Changer">GC</span> `:""}${view.rep&&view.rep[x.name]?`en lugar de ${esc(view.rep[x.name])}`:g.inclText&&g.inclText[x.name]?g.inclText[x.name]:g.incl&&g.incl[x.name]!=null?`en ${g.incl[x.name]}% de mazos`:esc(x.type.split("—")[0])}</span>`})).join("")}</div>`).join("")}` : `<div class="empty"><span>Elige un estilo para ver la lista de cartas.</span></div>`}</div>
       </div>
     </div>`}`;
-  setupCmdAutocomplete(); bindMergeBox();
+  setupCmdAutocomplete(); bindMergeBox(); bindAsk();
   if($("#aFromDeck")) $("#aFromDeck").onchange = e => { if(e.target.value) setAssistCommander(card(e.target.value)); };
   if(!c) return;
   $$("[data-play]").forEach(ch => { const act=()=>{ const k=ch.dataset.play; A.play = A.play.includes(k)?A.play.filter(x=>x!==k):[...A.play,k]; renderAssistant(); }; ch.onclick=act; ch.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){e.preventDefault();act();} }; });
@@ -2643,6 +2830,7 @@ function renderSettings(){
   $("#app").innerHTML = `<div class="settings">
     <h2>Ajustes y respaldo</h2>
     <div class="box" id="syncBox"><h4>Sincronizar Mac y iPhone</h4>${syncBoxHtml()}</div>
+    <div class="box" id="aiBox">${aiBoxHtml()}</div>
     <div class="box"><h4>Estilo de la app</h4>
       <div class="stylepick" role="radiogroup" aria-label="Estilo">${STYLE_UI.map(([id,n,x])=>`<button type="button" class="stylecard" role="radio" aria-checked="${(S.settings.style||"clasico")===id}" data-style-pick="${id}"><span class="sp sp-${id}"><i></i><i></i><i></i></span><b>${n}</b><span class="hint">${x}</span></button>`).join("")}</div>
       <div class="hint">También puedes cambiarlo en cualquier momento con el botón de colores arriba a la derecha.</div></div>
@@ -2660,7 +2848,7 @@ function renderSettings(){
     <p class="hint">Datos de cartas, imágenes y precios: <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a>. Precios USD de TCGplayer y EUR de Cardmarket, se actualizan una vez al día. Grimorio no está afiliado a Wizards of the Coast.</p>
   </div>`;
   $$("[data-style-pick]").forEach(b => b.onclick = () => { setStyle(b.dataset.stylePick); renderSettings(); });
-  bindSyncBox();
+  bindSyncBox(); bindAiBox();
   $("#sPen").onchange = e => { S.settings.pen = parseFloat(e.target.value)||S.settings.pen; save(); toast("Tipo de cambio guardado"); };
   $("#sShowPen").onchange = e => { S.settings.showPen = e.target.checked; save(); };
   $("#bExport").onclick = () => download(`grimorio-respaldo-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify(S,null,1), "application/json");
@@ -2700,6 +2888,275 @@ function bindSyncBox(){
   const o = $("#syOff"); if(o) o.onclick = () => { if(confirm("¿Desconectar este dispositivo? Tus datos quedan aquí, pero dejan de sincronizarse.")){ disconnectSync(); renderSettings(); } };
 }
 function download(name, text, type){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500); }
+
+/* ============ Reglas completas ============ */
+const REMOTE = "https://francogylling.github.io/grimorio/";
+const RULES_SRC = location.protocol==="https:" ? "rules.json" : REMOTE + "rules.json";
+const NEWS_SRC = location.protocol==="https:" ? "news.json" : REMOTE + "news.json";
+const RU = { d:null, loading:false, fresh:false, err:null, q:"", sec:null, focus:null, tab:"buscar", low:null, ban:{}, banFmt:"commander" };
+async function loadRules(){
+  if(RU.loading || RU.fresh) return; RU.loading = true;
+  if(!RU.d && IDB.db){ try{ const c = await idbGet("grimorio.rules"); if(c && c.rules){ RU.d = c; RU.low = null; } }catch(e){} }
+  try{
+    const r = await fetch(RULES_SRC + "?d=" + new Date().toISOString().slice(0,10), { cache:"no-cache" }); if(!r.ok) throw new Error(r.status);
+    const d = await r.json(); if(!d.rules || d.rules.length < 1000) throw new Error("incompletas");
+    RU.d = d; RU.low = null; RU.fresh = true; RU.err = null; if(IDB.db) idbPut("grimorio.rules", d).catch(()=>{});
+  }catch(e){ if(!RU.d) RU.err = "No pude descargar las reglas. Revisa tu conexión e inténtalo otra vez."; }
+  RU.loading = false;
+}
+const CH_ES = { 1:"Conceptos del juego", 2:"Partes de una carta", 3:"Tipos de carta", 4:"Zonas", 5:"Estructura del turno", 6:"Hechizos, habilidades y efectos", 7:"Reglas adicionales", 8:"Multijugador", 9:"Variantes (aquí está Commander)" };
+const RULE_TOPICS = [["903","Commander"],["903.10a","Daño de comandante"],["103.5","Mulligan"],["117","Prioridad"],["405","La pila"],["506","Combate"],["508","Atacantes"],["509","Bloqueadores"],["510","Daño de combate"],["704","Acciones de estado"],["613","Capas"],["614","Reemplazo"],["707","Copias"],["111","Fichas"],["702","Palabras clave"],["800","Multijugador"]];
+const ES_EN = [["toque mortal","deathtouch"],["vinculo vital","lifelink"],["doble golpe","double strike"],["golpe doble","double strike"],["primer golpe","first strike"],["dano primero","first strike"],["campo de batalla","battlefield"],["identidad de color","color identity"],["dano de comandante","commander|damage"],["dano de combate","combat damage"],["acciones basadas en estado","state-based actions"],["acciones de estado","state-based actions"],["valor de mana","mana value"],["coste de mana","mana cost"],["costo de mana","mana cost"],["doble cara","double-faced"],["zona de mando","command zone"],["habilidad disparada","triggered ability"],["habilidad activada","activated ability"],["habilidad estatica","static ability"],["efecto de reemplazo","replacement effect"],["paso de mantenimiento","upkeep"],["fase de combate","combat phase"],["declarar atacantes","declare attackers"],["declarar bloqueadores","declare blockers"],["mano inicial","opening hand"],["cara abajo","face down"],["cara arriba","face up"],
+  ["arrollar","trample"],["arrolla","trample"],["volar","flying"],["vuela","flying"],["vuelo","flying"],["alcance","reach"],["prisa","haste"],["vigilancia","vigilance"],["amenaza","menace"],["antimaleficio","hexproof"],["custodia","ward"],["proteccion","protection"],["destello","flash"],["defensor","defender"],["indestructible","indestructible"],["comandante","commander"],["pila","stack"],["prioridad","priority"],["combate","combat"],["atacar","attack"],["ataque","attack"],["ataca","attack"],["atacante","attacking"],["bloquear","block"],["bloqueo","block"],["bloquea","block"],["bloqueadora","blocking"],["dano","damage"],["ficha","token"],["copia","copy"],["copiar","copy"],["contrarrestar","counter"],["contador","counter"],["cementerio","graveyard"],["exilio","exile"],["exiliar","exile"],["exiliada","exile"],["biblioteca","library"],["mano","hand"],["robar","draw"],["roba","draw"],["descartar","discard"],["sacrificar","sacrifice"],["girar","tap"],["girada","tapped"],["enderezar","untap"],["tierra","land"],["criatura","creature"],["conjuro","sorcery"],["instantaneo","instant"],["encantamiento","enchantment"],["artefacto","artifact"],["legendario","legendary"],["legendaria","legendary"],["leyenda","legend"],["equipar","equip"],["equipo","equipment"],["capa","layer"],["reemplazo","replacement"],["turno","turn"],["fase","phase"],["paso","step"],["mantenimiento","upkeep"],["vida","life"],["veneno","poison"],["jugador","player"],["oponente","opponent"],["rival","opponent"],["transformar","transform"],["mutar","mutate"],["convocar","convoke"],["cascada","cascade"],["tormenta","storm"],["companero","partner"],["monarca","monarch"],["iniciativa","initiative"],["emblema","emblem"],["regenerar","regenerate"],["lanzar","cast"],["hechizo","spell"],["coste","cost"],["costo","cost"],["fuerza","power"],["resistencia","toughness"],["destruir","destroy"],["habilidad","ability"],["disparada","triggered"],["mazo","deck"],["multijugador","multiplayer"],["perder","lose"],["pierde","lose"],["ganar","win"],["gana","win"],["banquillo","sideboard"],["morir","dies"],["muere","dies"],["infectar","infect"],["toxico","toxic"],["proliferar","proliferate"],["adivinar","scry"],["vigilar","surveil"],["explorar","explore"],["aventura","adventure"],["batalla","battle"],["dia","day"],["noche","night"],["maldicion","curse"],["clon","copy"],["planeswalker","planeswalker"],["lealtad","loyalty"],["vacio","void"],["tamano","size"],["siete","seven"]];
+const ES_MAP = new Map(ES_EN.filter(x => !x[0].includes(" ")));
+const STOP = new Set("de la el los las que en un una unos unas y o con se por como cuando puedo puede pueden si es son a al del lo le les mi mis su sus para hay cual cuales cuanto cuantos cuantas pasa funciona funcionan sobre entre esta este eso esa hace hacer tengo tiene tienen no ya mas muy otro otra otros otras qué cómo".split(" "));
+function rulesTerms(q){
+  let s = " " + norm(q).replace(/[¿?¡!.,;:()"“”']/g," ").replace(/\s+/g," ") + " "; const out = [];
+  ES_EN.forEach(([a,b]) => { if(a.includes(" ")) while(s.includes(" "+a+" ")){ s = s.replace(" "+a+" ", " "); out.push(...b.split("|")); } });
+  s.split(" ").filter(Boolean).forEach(w => {
+    const m = ES_MAP.get(w) || (w.endsWith("es") && ES_MAP.get(w.slice(0,-2))) || (w.endsWith("s") && ES_MAP.get(w.slice(0,-1)));
+    if(m) out.push(m); else if(!STOP.has(w) && w.length > 1) out.push(w);
+  });
+  return [...new Set(out)];
+}
+function rulesIndex(){
+  if(RU.low) return RU.low; const d = RU.d;
+  const secs = Object.fromEntries(d.sections), r = d.rules.map(x => x[1].toLowerCase()), g = d.glossary.map(x => (x[0] + " " + x[1]).toLowerCase());
+  return RU.low = { secs, r, g, sl:Object.fromEntries(d.sections.map(([n,t])=>[n,t.toLowerCase()])) };
+}
+function searchRules(q){
+  const d = RU.d, ix = rulesIndex(), terms = rulesTerms(q); if(!terms.length) return { terms, rules:[], gloss:[] };
+  const rules = [];
+  d.rules.forEach((x,i) => { const t = ix.r[i]; if(!terms.every(w => t.includes(w))) return;
+    let sc = terms.reduce((a,w)=>a + t.split(w).length - 1, 0);
+    const title = /^\d{3}\.\d+$/.test(x[0]) && t.length < 60; if(title && terms.some(w => t.startsWith(w))) sc += 40;
+    if(terms.some(w => (ix.sl[x[0].slice(0,3)]||"").includes(w))) sc += 6;
+    if(/^\d{3}\.\d+$/.test(x[0])) sc += 2;
+    rules.push({ x, sc, i }); });
+  rules.sort((a,b) => b.sc - a.sc || a.i - b.i);
+  const gloss = d.glossary.filter((x,i) => terms.every(w => ix.g[i].includes(w))).sort((a,b) => (terms.some(w=>a[0].toLowerCase()===w)?-1:0) - (terms.some(w=>b[0].toLowerCase()===w)?-1:0) || a[0].length - b[0].length).slice(0,4);
+  return { terms, rules:rules.slice(0,60).map(r=>r.x), total:rules.length, gloss };
+}
+function ruleText(t, terms){
+  let h = esc(t).replace(/\b(\d{3}\.\d+[a-z]?)(?=[^\d]|$)/g, (m,n) => `<a class="rref" data-rule="${n}">${n}</a>`)
+    .replace(/\b(rules?|section) (\d{3})\b(?!\.\d)/g, (m,w,n) => `${w} <a class="rref" data-rule="${n}">${n}</a>`).replace(/\n/g,"<br>");
+  if(terms && terms.length){ const re = new RegExp("(" + terms.map(w=>w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|") + ")", "gi");
+    h = h.split(/(<[^>]+>)/).map(p => p.startsWith("<") ? p : p.replace(re, "<mark>$1</mark>")).join(""); }
+  return h;
+}
+function ruleRow(x, terms, focus){ const sec = x[0].slice(0,3), st = RU.low && RU.low.secs[sec];
+  return `<article class="rule ${focus?"focus":""}" id="r-${x[0].replace(/\./g,"_")}"><div class="rhead"><a class="rnum" data-rule="${x[0]}">${x[0]}</a>${terms&&st?`<a class="rsec" data-rule="${sec}">${sec}. ${esc(st)}</a>`:""}</div><div class="rtext">${ruleText(x[1], terms)}</div></article>`; }
+function goRule(n){ n = String(n).trim().replace(/\.$/,""); if(!RU.sec) RU.from = RU.tab; RU.sec = n.slice(0,3); RU.focus = n.length > 3 ? n : null; RU.tab = "buscar"; drawRules();
+  requestAnimationFrame(() => { const el = RU.focus && document.getElementById("r-" + RU.focus.replace(/\./g,"_")); if(el) el.scrollIntoView({ block:"center" }); else { const o = $("#rOut"); if(o) o.scrollIntoView({ block:"start" }); } }); }
+const BAN_FMTS = [["commander","Commander","banned:commander"],["standard","Standard","banned:standard"],["standardbrawl","Standard Brawl","banned:standardbrawl"],["pioneer","Pioneer","banned:pioneer"],["modern","Modern","banned:modern"],["pauper","Pauper","banned:pauper"],["legacy","Legacy","banned:legacy"],["vintage","Vintage (baneadas)","banned:vintage"],["vintage-r","Vintage (restringidas)","restricted:vintage"]];
+async function loadBans(f){
+  if(RU.ban[f] && RU.ban[f] !== "error") return; RU.ban[f] = "loading"; drawRules();
+  const q = (BAN_FMTS.find(x=>x[0]===f)||[])[2];
+  try{ let url = `/cards/search?q=${encodeURIComponent(q)}&order=name&unique=cards`; const out = [];
+    while(url){ const j = await sf(url); out.push(...j.data.map(x=>remember(slim(x)))); url = j.has_more ? j.next_page : null; }
+    RU.ban[f] = out; }catch(e){ RU.ban[f] = e.status===404 ? [] : "error"; }
+  if(location.hash === "#reglas") drawRules();
+}
+function renderRules(){
+  if(!RU.d && !RU.loading) loadRules().then(() => { if(location.hash === "#reglas") drawRules(); });
+  else if(!RU.fresh && !RU.loading) loadRules().then(() => { if(location.hash === "#reglas" && !RU.q) drawRules(); });
+  $("#app").innerHTML = `<div class="rules">
+    <div class="section-head" style="margin-top:0"><div><h2>Reglas completas</h2><p class="hint" style="margin:4px 0 0" id="rMeta">Las reglas oficiales de Wizards. Se actualizan solas cada semana.</p></div></div>
+    <div class="rsearch"><input type="search" id="rQ" value="${esc(RU.q)}" placeholder="Busca en español o inglés: arrollar, daño de comandante, 702.19…" autocomplete="off" enterkeyhint="search" aria-label="Buscar en las reglas"></div>
+    <div class="segs rtabs" role="tablist" aria-label="Secciones de las reglas">${[["buscar","Buscar"],["indice","Índice"],["glosario","Glosario"],["baneadas","Baneadas"]].map(([k,l])=>`<button type="button" class="segbtn" role="tab" data-rtab="${k}" aria-pressed="${RU.tab===k}" aria-selected="${RU.tab===k}">${l}</button>`).join("")}</div>
+    <div id="rOut"></div></div>`;
+  let t = null; const inp = $("#rQ");
+  inp.oninput = () => { clearTimeout(t); t = setTimeout(() => { RU.q = inp.value; RU.sec = null; RU.focus = null; if(RU.tab !== "glosario") RU.tab = "buscar"; drawRules(); }, 180); };
+  inp.onkeydown = e => { if(e.key === "Enter"){ e.preventDefault(); inp.blur(); } };
+  $$("[data-rtab]").forEach(b => b.onclick = () => { RU.tab = b.dataset.rtab; RU.sec = null; RU.focus = null; drawRules(); });
+  drawRules();
+}
+function drawRules(){
+  const o = $("#rOut"); if(!o) return;
+  $$("[data-rtab]").forEach(b => { b.setAttribute("aria-pressed", RU.tab===b.dataset.rtab); b.setAttribute("aria-selected", RU.tab===b.dataset.rtab); });
+  const meta = $("#rMeta");
+  if(meta && RU.d) meta.innerHTML = `Reglas oficiales de Wizards vigentes desde el <b>${esc(enDate(RU.d.effective))}</b>. Están en inglés (Wizards no las publica en español); puedes buscar en español. Se actualizan solas cada semana.`;
+  if(RU.tab === "baneadas"){ o.innerHTML = bansHtml(); bindRulesOut(o); if(!RU.ban[RU.banFmt]) loadBans(RU.banFmt); return; }
+  if(!RU.d){ o.innerHTML = RU.err ? `<div class="empty"><span>${esc(RU.err)}</span><button class="btn" id="rRetry">Reintentar</button></div>` : `<p class="loading">Cargando las reglas…</p>`;
+    if($("#rRetry")) $("#rRetry").onclick = () => { RU.err = null; loadRules().then(drawRules); drawRules(); }; return; }
+  const ix = rulesIndex(), d = RU.d, q = (RU.q||"").trim();
+  let h = "";
+  if(RU.sec){
+    const sec = RU.sec, isCh = sec.length === 1;
+    const list = isCh ? null : d.rules.filter(x => x[0].startsWith(sec + "."));
+    const secs = d.sections.map(x=>x[0]), i = secs.indexOf(sec), prev = secs[i-1], next = secs[i+1];
+    h = `<div class="row rnav"><button class="btn small" id="rBack">← ${q ? "Volver a la búsqueda" : "Volver"}</button>${prev?`<button class="btn small" data-rule="${prev}">‹ ${prev}</button>`:""}${next?`<button class="btn small" data-rule="${next}">${next} ›</button>`:""}</div>
+      <h3 class="rtitle">${esc(sec)}. ${esc(ix.secs[sec]||"")}</h3>${list && list.length ? list.map(x => ruleRow(x, null, RU.focus === x[0])).join("") : `<p class="hint">No encontré esa regla.</p>`}`;
+  } else if(RU.tab === "indice"){
+    h = `<div class="rindex">${d.chapters.map(([n,t]) => `<details class="box" ${n==="9"?"open":""}><summary><b>${n}. ${esc(CH_ES[n]||t)}</b> <span class="hint">${esc(t)}</span></summary><div class="rseclist">${d.sections.filter(s=>s[0][0]===n).map(([sn,st])=>`<a data-rule="${sn}"><span class="rnum">${sn}</span> ${esc(st)}</a>`).join("")}</div></details>`).join("")}</div>`;
+  } else if(RU.tab === "glosario"){
+    const terms = q ? rulesTerms(q) : [];
+    const g = d.glossary.filter((x,i) => !terms.length || terms.every(w => ix.g[i].includes(w)));
+    h = `<p class="hint">${g.length} términos${terms.length?` con “${esc(terms.join(" "))}”`:""}.</p><div class="gloss">${g.map(x=>`<div class="gl"><b>${esc(x[0])}</b><div>${ruleText(x[1], terms)}</div></div>`).join("")}</div>`;
+  } else if(q){
+    if(/^\d{3}(\.\d+[a-z]?)?\.?$/.test(q)){ const n = q.replace(/\.$/,""); RU.sec = n.slice(0,3); RU.focus = n.length>3 ? n : null; return drawRules(); }
+    const r = searchRules(q);
+    h = `<p class="hint">${r.terms.length ? `Buscando: <b>${esc(r.terms.join(", "))}</b> · ${r.total||0} reglas${r.total>60?" (muestro las 60 más relevantes; agrega otra palabra para afinar)":""}` : "Escribe algo más específico."}</p>
+      ${r.gloss.length ? `<div class="gloss">${r.gloss.map(x=>`<div class="gl"><b>${esc(x[0])}</b> <span class="tag">Glosario</span><div>${ruleText(x[1], r.terms)}</div></div>`).join("")}</div>` : ""}
+      ${r.rules.map(x => ruleRow(x, r.terms)).join("") || (r.terms.length ? `<div class="empty"><span>No encontré reglas con esas palabras. Prueba en inglés o con menos palabras.</span></div>` : "")}`;
+  } else {
+    h = `<div class="box"><h4>Temas frecuentes en partida</h4><div class="chips" style="margin:0">${RULE_TOPICS.map(([n,l])=>`<span class="chip" role="button" tabindex="0" data-rule="${n}">${esc(l)}</span>`).join("")}</div>
+      <div class="hint">También puedes escribir el número de una regla (por ejemplo 702.19) o una palabra clave en español.</div></div>`;
+  }
+  o.innerHTML = h; bindRulesOut(o);
+  if($("#rBack")) $("#rBack").onclick = () => { RU.sec = null; RU.focus = null; RU.tab = RU.from || "buscar"; drawRules(); window.scrollTo(0,0); };
+}
+function bansHtml(){
+  const f = RU.banFmt, b = RU.ban[f];
+  return `<div class="row" style="margin-bottom:10px"><select id="rBanFmt" aria-label="Formato">${BAN_FMTS.map(([k,l])=>`<option value="${k}" ${k===f?"selected":""}>${l}</option>`).join("")}</select>
+    <a class="hint" href="https://magic.wizards.com/en/banned-restricted-list" target="_blank" rel="noopener">Lista oficial de Wizards ↗</a></div>
+    ${b === "loading" || !b ? `<p class="loading">Consultando Scryfall…</p>` : b === "error" ? `<div class="empty"><span>No pude cargar la lista. Revisa tu conexión.</span></div>`
+      : `<p class="hint">${b.length} carta${b.length===1?"":"s"} ${f==="vintage-r"?"restringidas (solo 1 copia)":"baneadas"} en ${esc(BAN_FMTS.find(x=>x[0]===f)[1].replace(/ \(.*\)/,""))}. Datos de Scryfall, al día con el último anuncio.</p><div class="grid bangrid">${b.map(x=>tileHtml(x,{ sub:`<span class="n">${ownedByName(x.name)?`Tienes ${ownedByName(x.name)}`:esc(x.type.split("—")[0])}</span>` })).join("")}</div>`}`;
+}
+function bindRulesOut(o){
+  $$("[data-rule]", o).forEach(a => { const go = () => goRule(a.dataset.rule); a.onclick = go; a.onkeydown = e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } }; });
+  if($("#rBanFmt")) $("#rBanFmt").onchange = e => { RU.banFmt = e.target.value; drawRules(); };
+  bindTiles(o);
+}
+const EN_MONTHS = { january:"enero", february:"febrero", march:"marzo", april:"abril", may:"mayo", june:"junio", july:"julio", august:"agosto", september:"septiembre", october:"octubre", november:"noviembre", december:"diciembre" };
+function enDate(s){ const m = String(s||"").match(/([A-Za-z]+) (\d+), (\d{4})/); return m && EN_MONTHS[m[1].toLowerCase()] ? `${m[2]} de ${EN_MONTHS[m[1].toLowerCase()]} de ${m[3]}` : s; }
+
+/* ============ Noticias (news.json en el repo, se actualiza cada semana) ============ */
+const NW = { items:null, checked:null, tried:false };
+try{ const c = JSON.parse(localStorage.getItem("grimorio.news") || "null"); if(c && Array.isArray(c.items)){ NW.items = c.items; NW.checked = c.checked; } }catch(e){}
+async function loadNews(){
+  if(NW.tried) return false; NW.tried = true;
+  try{ const r = await fetch(NEWS_SRC + "?t=" + Date.now(), { cache:"no-cache" }); if(!r.ok) throw 0; const j = await r.json(); if(!Array.isArray(j.items)) throw 0;
+    const changed = JSON.stringify(j.items) !== JSON.stringify(NW.items) || j.checked !== NW.checked;
+    NW.items = j.items; NW.checked = j.checked; try{ localStorage.setItem("grimorio.news", JSON.stringify(j)); }catch(e){}
+    return changed; }catch(e){ return false; }
+}
+const NEWS_TAGS = { reglas:"Reglas", baneos:"Baneos", producto:"Producto", evento:"Evento" };
+function newsSorted(){
+  const now = Date.now(), items = (NW.items || NEWS).map(n => Object.assign({ k:"producto" }, n));
+  const hot = n => (n.k==="reglas" || n.k==="baneos") && Math.abs(new Date(n.d) - now) < 40*864e5;
+  return items.sort((a,b) => (hot(b) - hot(a)) || Math.abs(new Date(a.d)-now) - Math.abs(new Date(b.d)-now));
+}
+function newsHtml(){
+  const now = Date.now(), checked = NW.checked ? shortDate(new Date(NW.checked + "T12:00:00Z")) : NEWS_CHECKED;
+  return `<section class="box" style="margin-top:14px"><h4>Noticias: reglas, baneos y productos <span class="hint" style="text-transform:none;letter-spacing:0;font-weight:400">· revisadas el ${esc(checked)}</span></h4>
+    <div class="newslist">${newsSorted().map(n=>`<article class="news n-${esc(n.k)}"><div class="hint row" style="gap:6px"><span class="ntag">${esc(NEWS_TAGS[n.k]||n.k)}</span>${shortDate(new Date(n.d+"T12:00:00Z"))}${new Date(n.d)>now?" · próximamente":""}</div><b>${esc(n.t)}</b><p>${esc(n.x)}</p>
+      <div class="row" style="gap:10px">${n.u?`<a href="${esc(n.u)}" target="_blank" rel="noopener">Leer en ${esc(n.s)} ↗</a>`:""}${n.k==="reglas"?`<a href="#reglas" data-rtab-go="buscar">Ver reglas</a>`:n.k==="baneos"?`<a href="#reglas" data-rtab-go="baneadas">Ver baneadas</a>`:""}</div></article>`).join("")}</div>
+    <p class="hint" style="margin:8px 0 0">Se actualizan solas cada semana, siempre con los cambios de reglas y los anuncios de baneos.</p></section>`;
+}
+
+/* ============ Preguntas al asistente (Claude) ============ */
+const AI_LS = "grimorio.ai";
+const AQ = { deck:"", draft:"", chat:[], shown:[], busy:false };
+function aiCfg(){ try{ return JSON.parse(localStorage.getItem(AI_LS) || "{}") || {}; }catch(e){ return {}; } }
+function aiSet(o){ try{ const c = Object.assign(aiCfg(), o); Object.keys(c).forEach(k => { if(c[k] == null || c[k] === "") delete c[k]; }); localStorage.setItem(AI_LS, JSON.stringify(c)); }catch(e){} }
+const AI_MODELS = [["claude-opus-5-5","Opus 5.5 · el más inteligente"],["claude-sonnet-5-5","Sonnet 5.5 · más rápido y barato"]];
+const AQ_EXAMPLES = ["¿Cuántas tierras, rampa y robo debería llevar en Commander?","Recomiéndame cartas baratas de robo para azul","¿Cómo funciona el daño de comandante?","Recomiéndame un comandante barato para un deck de fichas","¿Qué diferencia hay entre Standard y Pioneer?"];
+function deckContext(d){
+  if(!d) return ""; const f = FMT(d), st = formatStatus(d), cmd = d.commander && card(d.commander);
+  const ln = b => deckCards(d, b).map(e => `${e.qty} ${card(e.id).name}`);
+  const main = ln("main"), side = ln("side"), maybe = ln("maybe");
+  return `Mi deck "${d.name}" (formato ${f.n}${cmd ? `, comandante ${cmd.name}` : ""}, ${deckCount(d)} cartas, ${deckStatus(d)==="built" ? "ya armado" : "en construcción"}).\n` +
+    (st.warns.length ? `Avisos de la app: ${st.warns.slice(0,8).join(" ")}\n` : "") +
+    `Lista:\n${main.join("\n")}` + (side.length ? `\nSideboard:\n${side.join("\n")}` : "") + (maybe.length ? `\nQuizás:\n${maybe.join("\n")}` : "");
+}
+function aqSystem(){
+  const cards = S.collection.reduce((a,e)=>a+e.qty,0);
+  return `Eres el asistente de Grimorio, la app de Magic: The Gathering de Franco, un jugador de Perú que juega sobre todo Commander y Standard y tiene unas ${cards} cartas en su colección (todas en inglés).
+Responde en español, claro y directo, como un amigo que sabe mucho de Magic. Usa listas cortas cuando ayuden. No te extiendas más de lo necesario.
+Escribe SIEMPRE los nombres de cartas en inglés, como están impresos, entre dobles corchetes: [[Sol Ring]]. La app los convierte en enlaces a la carta.
+Para dudas de reglas, explica con un ejemplo y cita el número de la regla de las Reglas Completas (por ejemplo 702.19b).
+Cuando recomiendes cartas, piensa en el presupuesto (precios en dólares de TCGplayer), prefiere cartas fáciles de conseguir y di para qué sirve cada una.
+Si la pregunta depende de algo reciente (baneos, sets nuevos, precios, reglas cambiadas), búscalo en la web antes de responder.
+Hoy es ${new Date().toISOString().slice(0,10)}.`;
+}
+function aqPromptText(q){ const d = AQ.deck && S.decks.find(x=>x.id===AQ.deck); const ctx = deckContext(d); return (ctx ? ctx + "\n\n" : "") + q; }
+function aqClaudeUrl(q){ let p = "Pregunta de Magic: The Gathering (responde en español; nombres de cartas en inglés).\n\n" + aqPromptText(q || "¿Qué me recomiendas?"); if(p.length > 6000) p = p.slice(0, 6000) + "\n…(lista recortada)"; return "https://claude.ai/new?q=" + encodeURIComponent(p); }
+function aqMd(t){
+  const inl = s => esc(s).replace(/\[\[([^\]]+)\]\]/g, (m,n) => `<a class="cardlink" data-cname="${n}">${n}</a>`)
+    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>").replace(/(^|[^*])\*([^*\n]+)\*/g, "$1<i>$2</i>").replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g, (m,l,u) => `<a href="${u}" target="_blank" rel="noopener">${l}</a>`)
+    .replace(/(?<![$\d.])\b(\d{3}\.\d+[a-z]?)\b/g, (m,n) => `<a class="rref" data-rule-go="${n}">${n}</a>`);
+  const out = []; let list = null;
+  String(t||"").split("\n").forEach(l => {
+    const li = l.match(/^\s*(?:[-*•]|\d+[.)])\s+(.*)$/), hd = l.match(/^#{1,4}\s+(.*)$/);
+    if(li){ const tag = /^\s*\d/.test(l) ? "ol" : "ul"; if(!list || list.tag !== tag){ list = { tag, items:[] }; out.push(list); } list.items.push(inl(li[1])); return; }
+    list = null; if(!l.trim()) return; out.push(hd ? `<h5>${inl(hd[1])}</h5>` : `<p>${inl(l)}</p>`);
+  });
+  return out.map(x => typeof x === "string" ? x : `<${x.tag}>${x.items.map(i=>`<li>${i}</li>`).join("")}</${x.tag}>`).join("");
+}
+function askBoxHtml(){
+  const cfg = aiCfg(), has = !!cfg.key;
+  const decks = S.decks.map(d => `<option value="${d.id}" ${AQ.deck===d.id?"selected":""}>${esc(d.name)} · ${esc(FMT(d).n)}</option>`).join("");
+  return `<h4>💬 Pregúntale al asistente</h4>
+    <p class="hint" style="margin:0">Dudas de reglas, cómo armar o mejorar un deck, qué cartas comprar, combos… Si eliges un deck, le paso tu lista para que la revise.</p>
+    ${AQ.shown.length ? `<div class="chatlog" id="aqLog">${AQ.shown.map(m => `<div class="msg ${m.who}">${m.who==="me" ? esc(m.text).replace(/\n/g,"<br>") : m.who==="err" ? esc(m.text) : aqMd(m.text)}</div>`).join("")}${AQ.busy?`<div class="msg bot"><span class="loading">Pensando…</span></div>`:""}</div>` :
+      `<div class="chips" style="margin:0">${AQ_EXAMPLES.map((x,i)=>`<span class="chip" role="button" tabindex="0" data-aqx="${i}">${esc(x)}</span>`).join("")}</div>`}
+    <textarea id="aqIn" rows="3" placeholder="${AQ.shown.length ? "Sigue preguntando…" : "Escribe tu pregunta…"}" aria-label="Tu pregunta">${esc(AQ.draft)}</textarea>
+    <div class="row aqbar">
+      <select id="aqDeck" aria-label="Deck para la pregunta"><option value="">Sin deck (pregunta general)</option>${decks}</select>
+      ${has ? `<button class="btn primary" id="aqSend" ${AQ.busy?"disabled":""}>Preguntar</button>` : ""}
+      <a class="btn ${has?"":"primary"}" id="aqClaude" href="${esc(aqClaudeUrl(AQ.draft))}" target="_blank" rel="noopener">Preguntar en Claude ↗</a>
+      ${AQ.shown.length ? `<button class="btn" id="aqNew">Nueva conversación</button>` : ""}
+    </div>
+    <div class="hint">${has ? `Responde aquí mismo con ${esc((AI_MODELS.find(m=>m[0]===cfg.model)||AI_MODELS[0])[1].split(" ·")[0])}. Toca los nombres de cartas para abrirlas.` : `"Preguntar en Claude" abre claude.ai con tu pregunta${AQ.deck?" y tu deck":""} ya escrita. Para que responda aquí mismo, agrega tu llave de Claude en <a href="#ajustes">Ajustes</a>.`}</div>`;
+}
+function drawAsk(){ const b = $("#askBox"); if(!b) return; b.innerHTML = askBoxHtml(); bindAsk(); const l = $("#aqLog"); if(l) l.scrollTop = l.scrollHeight; }
+function bindAsk(){
+  const inp = $("#aqIn"); if(!inp) return;
+  const upd = () => { const a = $("#aqClaude"); if(a) a.href = aqClaudeUrl(inp.value.trim()); };
+  inp.oninput = () => { AQ.draft = inp.value; upd(); };
+  inp.onkeydown = e => { if(e.key === "Enter" && (e.metaKey || e.ctrlKey)){ e.preventDefault(); if($("#aqSend")) $("#aqSend").click(); } };
+  $("#aqDeck").onchange = e => { AQ.deck = e.target.value; upd(); };
+  $$("[data-aqx]").forEach(ch => ch.onclick = () => { AQ.draft = AQ_EXAMPLES[+ch.dataset.aqx]; inp.value = AQ.draft; upd(); inp.focus(); });
+  if($("#aqSend")) $("#aqSend").onclick = () => { const q = inp.value.trim(); if(q) aqAsk(q); else inp.focus(); };
+  if($("#aqNew")) $("#aqNew").onclick = () => { AQ.chat = []; AQ.shown = []; AQ.draft = ""; AQ.sentDeck = null; drawAsk(); };
+  $$("#askBox .cardlink").forEach(a => a.onclick = () => openCardByName(a.dataset.cname));
+  $$("#askBox [data-rule-go]").forEach(a => a.onclick = () => { location.hash = "reglas"; setTimeout(() => goRule(a.dataset.ruleGo), 30); });
+}
+async function openCardByName(name){
+  const local = Object.values(S.cards).find(x => x.name === name);
+  try{ const c = await namedCheap(name); openCard(c.id); }catch(e){ if(local) openCard(local.id); else toast("No encontré " + name); }
+}
+async function aqAsk(q){
+  const cfg = aiCfg(); if(!cfg.key || AQ.busy) return;
+  const d = AQ.deck && S.decks.find(x=>x.id===AQ.deck);
+  const sentDeck = AQ.sentDeck === AQ.deck; // no repetir la lista en cada pregunta de la misma conversación
+  const content = (d && !sentDeck ? deckContext(d) + "\n\n" : "") + q;
+  AQ.sentDeck = AQ.deck; const base = AQ.chat.length;
+  AQ.chat.push({ role:"user", content }); AQ.shown.push({ who:"me", text:q + (d && !sentDeck ? `\n(con la lista de ${d.name})` : "") });
+  AQ.draft = ""; AQ.busy = true; drawAsk();
+  let text = "", err = "";
+  try{
+    for(let i = 0; i < 6; i++){
+      const r = await fetch("https://api.anthropic.com/v1/messages", { method:"POST", headers:{ "content-type":"application/json", "x-api-key":cfg.key, "anthropic-version":"2026-10-21", "anthropic-dangerous-direct-browser-access":"true" },
+        body: JSON.stringify({ model: cfg.model || AI_MODELS[0][0], max_tokens:16000, system:aqSystem(), output_config:{ effort:"medium" }, tools:[{ type:"web_search_20260209", name:"web_search", max_uses:3 }], messages:AQ.chat }) });
+      const j = await r.json().catch(() => ({}));
+      if(!r.ok){ const m = (j.error && j.error.message) || ""; err = r.status===401 ? "La llave de Claude no es válida. Revísala en Ajustes." : r.status===429 ? "Claude está ocupado o llegaste al límite de tu cuenta. Espera un minuto y vuelve a preguntar." : /credit|balance|billing/i.test(m) ? "Tu cuenta de Claude no tiene crédito. Cárgalo en console.anthropic.com → Billing." : "Claude respondió con un error: " + (m || r.status); break; }
+      if(j.stop_reason === "refusal"){ err = "Claude no quiso responder esa pregunta. Prueba a escribirla de otra forma."; break; }
+      AQ.chat.push({ role:"assistant", content:j.content });
+      text += (j.content || []).filter(b => b.type === "text").map(b => b.text).join("");
+      if(j.stop_reason !== "pause_turn") break;
+    }
+  }catch(e){ err = "No pude conectar con Claude. Revisa tu internet."; }
+  if(err){ AQ.chat.length = base; AQ.sentDeck = null; AQ.shown.push({ who:"err", text:err }); AQ.draft = q; }
+  else AQ.shown.push({ who:"bot", text: text.replace(/\n{3,}/g,"\n\n").trim() || "(sin respuesta)" });
+  AQ.busy = false; drawAsk();
+}
+function aiBoxHtml(){
+  const cfg = aiCfg();
+  return `<h4>Asistente con Claude (opcional)</h4>
+    ${cfg.key ? `<div class="row"><span class="fit ok">Conectado</span><span class="hint">Llave ••••${esc(cfg.key.slice(-4))}</span>
+        <select id="aiModel" aria-label="Modelo">${AI_MODELS.map(([v,l])=>`<option value="${v}" ${(cfg.model||AI_MODELS[0][0])===v?"selected":""}>${l}</option>`).join("")}</select>
+        <button class="btn small danger" id="aiOff">Quitar llave</button></div>`
+      : `<div class="row"><input type="password" id="aiKey" placeholder="sk-ant-…" autocomplete="off" style="flex:1 1 220px;min-width:0" aria-label="Llave de Claude"><button class="btn primary" id="aiSave">Guardar llave</button></div>`}
+    <div class="hint">Con una llave de Claude, el asistente responde tus preguntas dentro de la app. Se crea en <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> → API Keys, y se paga aparte por uso (cargas crédito desde $5; cada pregunta cuesta centavos). La llave se guarda solo en este dispositivo y no se sincroniza. Sin llave puedes usar el botón "Preguntar en Claude", que abre claude.ai con tu pregunta.</div>`;
+}
+function bindAiBox(){
+  if($("#aiSave")) $("#aiSave").onclick = () => { const k = $("#aiKey").value.trim(); if(!/^sk-ant-/.test(k)){ toast("Esa no parece una llave de Claude (empieza con sk-ant-)"); return; } aiSet({ key:k }); toast("Llave guardada en este dispositivo"); $("#aiBox").innerHTML = aiBoxHtml(); bindAiBox(); };
+  if($("#aiOff")) $("#aiOff").onclick = () => { aiSet({ key:null }); $("#aiBox").innerHTML = aiBoxHtml(); bindAiBox(); };
+  if($("#aiModel")) $("#aiModel").onchange = e => aiSet({ model:e.target.value });
+}
 
 /* ============ Inicio ============ */
 (async()=>{
