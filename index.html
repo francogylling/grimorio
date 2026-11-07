@@ -342,6 +342,23 @@ a.stat{color:inherit;text-decoration:none}
 [data-style="mana"] .deck-card .info{background:linear-gradient(180deg,color-mix(in srgb,var(--dk1) 13%,var(--surface)),var(--surface) 75%)}
 [data-style="mana"] .deck-card .pbar i{background:var(--dk1)}
 [data-style="mana"] .chip[aria-pressed="true"],[data-style="mana"] .segbtn[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.logrow{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.logrow .cimg,.logrow .nm{cursor:pointer}
+.logrow.bulk{grid-template-columns:52px minmax(0,1fr) auto}
+.logic{font-size:26px;text-align:center}
+.dav{display:inline-grid;place-items:center;border-radius:50%;overflow:hidden;flex:none;box-shadow:0 0 0 2.5px var(--ring);background:var(--ring);vertical-align:middle}
+.dav img{width:100%;height:100%;object-fit:cover;display:block}
+.dav b{color:#fff;font-size:12px}
+.tsdecklist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.tsdeck{display:grid;grid-template-columns:auto minmax(0,1fr) 22px;gap:10px;align-items:center;text-align:left;border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 10px;cursor:pointer;opacity:.6}
+.tsdeck[aria-pressed="true"]{opacity:1;border-color:var(--ring);background:color-mix(in srgb,var(--ring) 10%,var(--surface))}
+.tsdk{display:grid;min-width:0}.tsdk b,.tsdk .hint{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tschk{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff}
+.tsdeck[aria-pressed="true"] .tschk{background:var(--ring);border-color:var(--ring)}
+.tsfor{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tsforitem{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:2px 9px 2px 2px;border-radius:999px;background:color-mix(in srgb,var(--ring) 14%,transparent);max-width:100%}
+.tsforitem>span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tsdecks{margin-bottom:12px}
 /* modal */
 .modal{position:fixed;inset:0;z-index:50;background:rgba(10,12,18,.62);display:grid;place-items:center;padding:16px;overflow:auto}
 .sheet{background:var(--surface);border-radius:16px;max-width:920px;width:100%;display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:24px;padding:22px;position:relative;max-height:calc(100vh - 32px);overflow:auto}
@@ -427,7 +444,7 @@ window.addEventListener("error", e => { const a=document.getElementById("app"); 
 "use strict";
 /* ============ Estado y guardado ============ */
 const KEY = "grimorio.v1";
-const blank = () => ({ v:1, cards:{}, collection:[], decks:[], settings:{ pen:3.75, showPen:true, style:"clasico" } });
+const blank = () => ({ v:1, cards:{}, collection:[], decks:[], log:[], settings:{ pen:3.75, showPen:true, style:"clasico" } });
 const normalize = s => Object.assign(blank(), s, {settings:Object.assign(blank().settings, s.settings||{})});
 let S = load();
 applyStyle();
@@ -478,7 +495,7 @@ let SY = (() => { try{ return JSON.parse(localStorage.getItem(SYNC_LS)) || {}; }
 const SYNC = { busy:false, again:false, timer:null, quiet:false, status:"", err:"", baseJ:null };
 const J = o => JSON.stringify(o);
 function saveSY(){ try{ localStorage.setItem(SYNC_LS, J(SY)); }catch(e){} }
-function syncPayload(){ return { collection:S.collection||[], decks:S.decks||[], settings:S.settings||{}, history:S.history||[] }; }
+function syncPayload(){ return { collection:S.collection||[], decks:S.decks||[], settings:S.settings||{}, history:S.history||[], log:S.log||[] }; }
 function scheduleSync(){
   if(!SY.token || SYNC.quiet) return;
   clearTimeout(SYNC.timer);
@@ -520,10 +537,11 @@ function mergePayload(b, l, r){
     decks: merge3list(b && b.decks, l.decks, r.decks, d => d.id),
     settings: merge3obj(b && b.settings, l.settings, r.settings, !b),
     history: merge3list(b && b.history, l.history, r.history, h => h.d).sort((x,y) => String(x.d).localeCompare(String(y.d))),
+    log: merge3list(b && b.log, l.log, r.log, x => x.t + "|" + (x.id||"lote")).sort((x,y) => x.t - y.t).slice(-1500),
   };
 }
 function applyPayload(p){
-  S.collection = p.collection || []; S.decks = p.decks || []; S.history = p.history || [];
+  S.collection = p.collection || []; S.decks = p.decks || []; S.history = p.history || []; S.log = p.log || [];
   S.settings = Object.assign(blank().settings, p.settings || {}); OWN = null; applyStyle();
 }
 async function gh(path, opt = {}){
@@ -973,7 +991,7 @@ function bindQuickSearch(){
 function bindQuickResult(){
   const c = QS.card; if(!c) return;
   if($("#qsOpen")) $("#qsOpen").onclick = () => openCard(c.id);
-  if($("#qsAdd")) $("#qsAdd").onclick = () => { addToCollection(c, 1, false); toast(`${c.name} agregada a tu colección`); $("#qsOut").innerHTML = quickResultHtml(); bindQuickResult(); };
+  if($("#qsAdd")) $("#qsAdd").onclick = () => { addToCollection(c, 1, false, "Buscador rápido"); toast(`${c.name} agregada a tu colección`); $("#qsOut").innerHTML = quickResultHtml(); bindQuickResult(); };
   $$("#qsOut [data-open]").forEach(el => el.onclick = () => openCard(el.dataset.open));
 }
 
@@ -981,10 +999,17 @@ function bindQuickResult(){
 const TS = { group:"color", colors:[], rar:[], type:"", cmcMax:"", built:false, sort:"price", q:"", bought:[], quotes:{} };
 const COLOR_GROUPS = [["W","Blanco"],["U","Azul"],["B","Negro"],["R","Rojo"],["G","Verde"],["M","Multicolor"],["C","Incoloro / artefactos"],["L","Tierras"]];
 function colorGroupOf(c){ if(/Land/.test(c.type.split("//")[0])) return "L"; const cc = c.col || c.ci; return !cc.length ? "C" : cc.length>1 ? "M" : cc[0]; }
+const DECK_RING = ["#e2a640","#7c5cff","#22a06b","#e5484d","#2a77bd","#d6409f","#12a594","#f76b15","#8d6e63","#5b6376"];
+function deckRing(d){ const i = S.decks.indexOf(d); return DECK_RING[(i<0?0:i) % DECK_RING.length]; }
+function deckAvatar(d, size){ const cmd = d.commander && card(d.commander); const ring = deckRing(d); const s = size||26;
+  const img = cmd && (cmd.art || cmd.sm);
+  return `<span class="dav" style="--ring:${ring};width:${s}px;height:${s}px" title="${esc(d.name)}${cmd?" · "+esc(cmd.name):""}">${img ? `<img src="${esc(img)}" alt="" loading="lazy">` : `<b>${esc((d.name||"?").trim()[0]||"?")}</b>`}</span>`; }
+function storeDeckPool(){ return S.decks.filter(d => TS.built || deckStatus(d)!=="built"); }
+function storeSelected(){ const pool = storeDeckPool(); const sel = S.settings.storeDecks; return Array.isArray(sel) ? pool.filter(d => sel.includes(d.id)) : pool; }
 function storeMissing(){
   const byName = new Map(); Object.values(S.cards).forEach(c => { const o = byName.get(c.name); if(!o || (usdOf(c)??1e9) < (usdOf(o)??1e9)) byName.set(c.name, c); });
   const rows = new Map();
-  S.decks.filter(d => TS.built || deckStatus(d)!=="built").forEach(d => deckNeeds(d).forEach((q, name) => {
+  storeSelected().forEach(d => deckNeeds(d).forEach((q, name) => {
     const r = rows.get(name) || { name, need:0, decks:[] }; r.need += q; r.decks.push(d); rows.set(name, r); }));
   const out = [];
   rows.forEach(r => { const miss = r.need - ownedByName(r.name); const c = byName.get(r.name); if(miss > 0 && c) out.push({ ...r, miss, c, v: usdOf(c) }); });
@@ -1015,13 +1040,17 @@ function renderStore(){
   const tot = list.reduce((a,r)=>a+(r.v||0)*r.miss,0), nCards = list.reduce((a,r)=>a+r.miss,0);
   const chip = (attr, k, on, inner, title) => `<button type="button" class="pipbtn ${inner.startsWith("<img")?"":"txt"}" data-${attr}="${k}" aria-pressed="${on}" title="${title||""}" aria-label="${title||k}">${inner}</button>`;
   $("#app").innerHTML = `
-    <div class="section-head" style="margin-top:0"><div><h2>Modo tienda</h2><p class="hint" style="margin:4px 0 0">Todo lo que te falta para tus decks${st.built?"":" en construcción"}, ordenado como en la tienda. Marca lo que compras y compara el precio que te piden.</p></div>
+    <div class="section-head" style="margin-top:0"><div><h2>Modo tienda</h2><p class="hint" style="margin:4px 0 0">Lo que te falta para los decks que elijas, ordenado como en la tienda. Marca lo que compras y compara el precio que te piden.</p></div>
       <button class="btn" id="tsCopy">Copiar lista</button></div>
     <div class="stats" style="margin-bottom:12px">
       <div class="stat"><div class="k">Te faltan</div><div class="v">${nCards}</div><div class="s">${list.length} cartas distintas</div></div>
       <div class="stat"><div class="k">Costo aprox.</div><div class="v">${fmtUsd(tot)}</div><div class="s">≈ ${fmtPen(tot)}</div></div>
       <div class="stat"><div class="k">Compradas hoy</div><div class="v">${st.bought.length}</div><div class="s">${st.bought.length?"se agregaron a tu colección":"marca con ✓ al comprar"}</div></div>
     </div>
+    <div class="box tsdecks"><h4 class="row" style="justify-content:space-between">¿Qué decks quieres completar? <span class="row" style="gap:6px;text-transform:none;letter-spacing:0"><button type="button" class="linkbtn" id="tsAll">Todos</button><button type="button" class="linkbtn" id="tsNone">Ninguno</button></span></h4>
+      ${storeDeckPool().length ? `<div class="tsdecklist">${storeDeckPool().map(d => { const on = storeSelected().includes(d); const cmd = d.commander && card(d.commander); const p = deckProgress(d);
+        return `<button type="button" class="tsdeck" data-tsd="${d.id}" aria-pressed="${on}" style="--ring:${deckRing(d)}">${deckAvatar(d, 34)}<span class="tsdk"><b>${esc(d.name)}</b><span class="hint">${cmd?esc(cmd.name):(d.format==="commander"?"Sin comandante":"Standard")} · ${p.pct}%</span></span><span class="tschk" aria-hidden="true">${on?"✓":""}</span></button>`; }).join("")}</div>`
+        : `<p class="hint" style="margin:0">No tienes decks ${st.built?"":"en construcción "}todavía.</p>`}</div>
     <div class="box tsfilters">
       <div class="row" style="gap:6px"><span class="lbl">Agrupar</span>${[["color","Color"],["rarity","Rareza"],["cmc","Coste"],["type","Tipo"],["deck","Deck"]].map(([k,l])=>`<button type="button" class="segbtn" data-tsg="${k}" aria-pressed="${st.group===k}">${l}</button>`).join("")}</div>
       <div class="row" style="gap:4px">${COLOR_GROUPS.map(([k,l])=>chip("tsc", k, st.colors.includes(k), "WUBRGC".includes(k)?symHtml(k):k==="M"?"Multi":"Tierras", l)).join("")}</div>
@@ -1034,13 +1063,13 @@ function renderStore(){
         <label class="row" style="gap:6px;font-size:13px"><input type="checkbox" id="tsBuilt" ${st.built?"checked":""}> Incluir decks armados</label>
       </div>
     </div>
-    ${!all.length ? `<div class="empty"><h3>No te falta nada</h3><span>${S.decks.length?"Tienes todas las cartas de tus decks"+(st.built?"":" en construcción")+".":"Crea un deck o usa el asistente para empezar."}</span></div>` :
+    ${!storeSelected().length && storeDeckPool().length ? `<div class="empty"><h3>Elige al menos un deck</h3><span>Toca arriba los decks que quieres ir completando.</span></div>` : !all.length ? `<div class="empty"><h3>No te falta nada</h3><span>${S.decks.length?"Tienes todas las cartas de tus decks"+(st.built?"":" en construcción")+".":"Crea un deck o usa el asistente para empezar."}</span></div>` :
       !list.length ? `<div class="empty"><span>Ninguna carta coincide con esos filtros.</span></div>` :
-      keys.map(k => { const g = groups.get(k); return `<div class="tsgroup"><h3 class="row" style="justify-content:space-between"><span>${st.group==="color"&&"WUBRGC".includes(k)?symHtml(k)+" ":""}${label(k)} <span class="hint">(${g.reduce((a,r)=>a+r.miss,0)})</span></span><span class="price">${fmtUsd(g.reduce((a,r)=>a+(r.v||0)*r.miss,0))}</span></h3>
+      keys.map(k => { const g = groups.get(k); return `<div class="tsgroup"><h3 class="row" style="justify-content:space-between"><span>${st.group==="color"&&"WUBRGC".includes(k)?symHtml(k)+" ":""}${st.group==="deck"&&S.decks.find(d=>d.id===k)?deckAvatar(S.decks.find(d=>d.id===k),28)+" ":""}${label(k)} <span class="hint">(${g.reduce((a,r)=>a+r.miss,0)})</span></span><span class="price">${fmtUsd(g.reduce((a,r)=>a+(r.v||0)*r.miss,0))}</span></h3>
         ${g.map(r => `<div class="tsrow"><img class="cimg" loading="lazy" src="${esc(r.c.sm||r.c.img)}" alt="" data-open="${r.c.id}">
           <div class="tsmain"><div class="row" style="gap:6px;justify-content:space-between"><b class="nm" data-open="${r.c.id}">${r.miss>1?r.miss+"× ":""}${esc(r.name)}</b>${manaHtml(r.c.mana)}</div>
             <div class="hint">${setBadge(r.c)} · ${esc(rarEs(r.c.rarity))} · ${esc(r.c.type.split("—")[0].trim())}</div>
-            <div class="hint">Para: ${r.decks.map(d=>esc(d.name)).join(", ")}</div>
+            <div class="tsfor">${r.decks.map(d=>`<span class="tsforitem" style="--ring:${deckRing(d)}">${deckAvatar(d, 22)}<span>${esc(d.name)}</span></span>`).join("")}</div>
             <div class="row" style="gap:8px;margin-top:4px"><span>${priceHtml(r.v)} <span class="hint">≈ ${fmtPen(r.v)}</span></span>
               <label class="tsquote">Te piden S/ <input type="number" inputmode="decimal" step="0.5" min="0" data-quote="${esc(r.name)}" value="${esc(st.quotes[r.name]||"")}" aria-label="Precio en la tienda en soles"></label><span data-verdict="${esc(r.name)}">${storeQuote(r)}</span></div></div>
           <button class="btn small tsbuy" data-buy="${esc(r.name)}" title="La compré: agregar a mi colección">✓ Comprada</button></div>`).join("")}</div>`; }).join("")}
@@ -1054,9 +1083,13 @@ function renderStore(){
   $("#tsCmc").onchange = e => { st.cmcMax = e.target.value; rer(); };
   $("#tsSort").onchange = e => { st.sort = e.target.value; rer(); };
   $("#tsBuilt").onchange = e => { st.built = e.target.checked; rer(); };
+  $$("[data-tsd]").forEach(b => b.onclick = () => { const pool = storeDeckPool().map(d=>d.id); let sel = Array.isArray(S.settings.storeDecks) ? S.settings.storeDecks.filter(id=>S.decks.some(d=>d.id===id)) : pool.slice();
+    const id = b.dataset.tsd; sel = sel.includes(id) ? sel.filter(x=>x!==id) : [...sel, id]; S.settings.storeDecks = sel; save(); rer(); });
+  $("#tsAll").onclick = () => { S.settings.storeDecks = null; save(); rer(); };
+  $("#tsNone").onclick = () => { S.settings.storeDecks = []; save(); rer(); };
   $$("[data-quote]").forEach(inp => inp.oninput = () => { st.quotes[inp.dataset.quote] = inp.value; const r = list.find(x=>x.name===inp.dataset.quote); const v = $(`[data-verdict="${CSS.escape(inp.dataset.quote)}"]`); if(r && v) v.innerHTML = storeQuote(r); });
-  $$("[data-buy]").forEach(b => b.onclick = () => { const r = list.find(x=>x.name===b.dataset.buy); if(!r) return; addToCollection(r.c, r.miss, false); st.bought.push({ name:r.name, id:r.c.id, qty:r.miss }); toast(`${r.miss}× ${r.name} agregada a tu colección`); rer(); });
-  $$("[data-undo]").forEach(b => b.onclick = () => { const x = st.bought[+b.dataset.undo]; const e = S.collection.find(e=>e.id===x.id && !e.foil); if(e){ e.qty -= x.qty; if(e.qty<=0) S.collection.splice(S.collection.indexOf(e),1); save(); } st.bought.splice(+b.dataset.undo,1); rer(); });
+  $$("[data-buy]").forEach(b => b.onclick = () => { const r = list.find(x=>x.name===b.dataset.buy); if(!r) return; addToCollection(r.c, r.miss, false, "Modo tienda"); st.bought.push({ name:r.name, id:r.c.id, qty:r.miss }); toast(`${r.miss}× ${r.name} agregada a tu colección`); rer(); });
+  $$("[data-undo]").forEach(b => b.onclick = () => { const x = st.bought[+b.dataset.undo]; const e = S.collection.find(e=>e.id===x.id && !e.foil); if(e){ e.qty -= x.qty; if(e.qty<=0) S.collection.splice(S.collection.indexOf(e),1); const li = (S.log||[]).map(l=>l.id===x.id&&l.src==="Modo tienda").lastIndexOf(true); if(li>=0) S.log.splice(li,1); save(); } st.bought.splice(+b.dataset.undo,1); rer(); });
   $$("#app [data-open]").forEach(el => el.onclick = () => openCard(el.dataset.open));
   $("#tsCopy").onclick = () => copyText(keys.map(k=>`${label(k).replace(/<[^>]+>/g,"")}\n` + groups.get(k).map(r=>`${r.miss} ${r.name}`).join("\n")).join("\n\n"), "Lista copiada");
 }
@@ -1327,7 +1360,7 @@ function drawModal(){
   $("#mMinus").onclick = () => { const i=$("#mQty"); i.value=Math.max(1,(+i.value||1)-1); };
   $("#mPlus").onclick = () => { const i=$("#mQty"); i.value=(+i.value||0)+1; };
   $("#mFoil").onchange = e => { m.foil = e.target.checked; };
-  $("#mAdd").onclick = () => { addToCollection(c, Math.max(1, +$("#mQty").value||1), $("#mFoil").checked); toast(`Agregada a tu colección: ${c.name}`); drawModal(); };
+  $("#mAdd").onclick = () => { addToCollection(c, Math.max(1, +$("#mQty").value||1), $("#mFoil").checked, "Ficha de la carta"); toast(`Agregada a tu colección: ${c.name}`); drawModal(); };
   if($("#mDeckAdd")){
     $("#mDeckAdd").onclick = () => { const d = S.decks.find(x=>x.id===$("#mDeck").value); addToDeck(d, c, 1, $("#mBoard").value); toast(`Agregada a ${d.name}`); };
     $("#mCmd").onclick = () => { const d = S.decks.find(x=>x.id===$("#mDeck").value); keep(c); d.commander = c.id; d.format="commander"; save(); toast(`${c.name} es ahora comandante de ${d.name}`); };
@@ -1339,16 +1372,52 @@ function drawModal(){
 }
 
 /* ============ Colección ============ */
-function addToCollection(c, qty, foil){
+function addToCollection(c, qty, foil, src){
   keep(c);
   const e = S.collection.find(x => x.id===c.id && x.foil===!!foil);
   if(e) e.qty += qty; else S.collection.push({ id:c.id, foil:!!foil, qty, added:Date.now() });
+  logAdd({ id:c.id, qty, foil:!!foil, src:src||"Agregada a mano" });
   save(); refreshIfVisible();
 }
+function logAdd(x){ if(!S.log) S.log = []; let t = Date.now(); const last = S.log[S.log.length-1]; if(last && last.t >= t) t = last.t + 1; S.log.push(Object.assign({ t }, x)); if(S.log.length > 1500) S.log.splice(0, S.log.length - 1500); }
 function refreshIfVisible(){ const h = location.hash.replace("#","")||"buscar"; if(h==="coleccion") renderCollection(); else if(h.startsWith("deck-")) renderDecks(); }
-const colState = { q:"", set:"", sort:"value", view:"grid", colors:[], cmode:"exact", ident:false };
+const colState = { q:"", set:"", sort:"value", view:"grid", colors:[], cmode:"exact", ident:false, tab:"all", logN:60 };
+const colTabsHtml = () => `<div class="seg" role="group" aria-label="Vista"><button type="button" data-ctab="all" aria-pressed="${colState.tab!=="log"}">Toda mi colección</button><button type="button" data-ctab="log" aria-pressed="${colState.tab==="log"}">🕘 Últimas añadidas</button></div>`;
+document.addEventListener("click", e => { const b = e.target.closest("[data-ctab]"); if(!b) return; colState.tab = b.dataset.ctab; colState.logN = 60; renderCollection(); });
+function dayLabel(t){ const d = new Date(t), today = new Date(); const k = x => x.toDateString(); const y = new Date(today); y.setDate(today.getDate()-1);
+  if(k(d)===k(today)) return "Hoy"; if(k(d)===k(y)) return "Ayer"; return d.toLocaleDateString("es-PE",{ weekday:"long", day:"numeric", month:"long", year: d.getFullYear()===today.getFullYear() ? undefined : "numeric" }); }
+function renderAddLog(){
+  const log = (S.log||[]).slice().reverse();
+  const first = log.length ? log[log.length-1].t : Infinity;
+  const before = S.collection.filter(e => card(e.id) && (e.added||0) < first && e.added).sort((a,b)=>b.added-a.added).map(e => ({ t:e.added, id:e.id, qty:e.qty, foil:e.foil, src:"", old:true }));
+  const rows = [...log, ...before].slice(0, colState.logN);
+  const total = log.length + before.length;
+  const days = new Map(); rows.forEach(r => { const k = dayLabel(r.t); if(!days.has(k)) days.set(k, []); days.get(k).push(r); });
+  const weekAgo = Date.now() - 7*864e5, wk = log.filter(r => r.t >= weekAgo && !r.bulk);
+  const wkVal = wk.reduce((a,r) => a + (usdOf(card(r.id), r.foil)||0) * r.qty, 0);
+  $("#app").innerHTML = `
+    <div class="section-head" style="margin-top:0"><h2>Mi colección</h2>${colTabsHtml()}</div>
+    <div class="stats" style="margin-bottom:12px">
+      <div class="stat"><div class="k">Últimos 7 días</div><div class="v">${wk.reduce((a,r)=>a+r.qty,0)}</div><div class="s">cartas agregadas</div></div>
+      <div class="stat"><div class="k">Valor agregado</div><div class="v">${fmtUsd(wkVal)}</div>${S.settings.showPen?`<div class="s">≈ ${fmtPen(wkVal)}</div>`:""}</div>
+    </div>
+    ${!rows.length ? `<div class="empty"><h3>Todavía no agregaste cartas</h3><span>Cuando agregues cartas (escáner, búsqueda, modo tienda o importando), aparecen aquí con fecha y hora.</span></div>` :
+      [...days.entries()].map(([day, list]) => `<div class="tsgroup"><h3 class="row" style="justify-content:space-between"><span>${esc(day.charAt(0).toUpperCase()+day.slice(1))}</span><span class="hint">${(n=>n+(n===1?" carta":" cartas"))(list.reduce((a,r)=>a+(r.qty||0),0))}</span></h3>
+        ${list.map(r => { if(r.bulk) return `<div class="logrow bulk"><span class="logic">📥</span><div class="tsmain"><b>${r.qty} cartas (${r.kinds} distintas)</b><div class="hint">${esc(r.src)}${r.file?" · "+esc(r.file):""}</div></div><span class="hint">${new Date(r.t).toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"})}</span></div>`;
+          const c = card(r.id); if(!c) return "";
+          const own = S.collection.filter(e=>card(e.id)&&card(e.id).name===c.name).reduce((a,e)=>a+e.qty,0);
+          return `<div class="logrow"><img class="cimg" loading="lazy" src="${esc(c.sm||c.img)}" alt="" data-open="${c.id}">
+            <div class="tsmain"><div class="row" style="gap:6px;justify-content:space-between"><b class="nm" data-open="${c.id}">${r.qty>1?r.qty+"× ":""}${esc(c.name)}${r.foil?' <span class="badge">foil</span>':""}</b>${manaHtml(c.mana)}</div>
+              <div class="hint">${setBadge(c)} · ${esc(rarEs(c.rarity))} · ahora tienes ${own}</div>
+              <div class="hint">${r.old ? "Fecha en que entró a tu colección" : esc(r.src)}</div></div>
+            <div style="text-align:right">${priceHtml(usdOf(c, r.foil))}<div class="hint">${r.old ? "" : new Date(r.t).toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"})}</div></div></div>`; }).join("")}</div>`).join("")}
+    ${total > rows.length ? `<div class="row" style="justify-content:center;margin-top:16px"><button class="btn" id="logMore">Ver más (${rows.length} de ${total})</button></div>` : ""}`;
+  $$("#app [data-open]").forEach(el => el.onclick = () => openCard(el.dataset.open));
+  if($("#logMore")) $("#logMore").onclick = () => { colState.logN += 100; renderAddLog(); };
+}
 let COLUSE = new Map();
 function renderCollection(){
+  if(colState.tab === "log") return renderAddLog();
   COLUSE = deckUsage();
   const st = colState; const items = S.collection.filter(e=>card(e.id));
   const total = items.reduce((a,e)=>a+e.qty,0);
@@ -1367,7 +1436,7 @@ function renderCollection(){
   const oldest = items.length ? Math.min(...items.map(e=>card(e.id).upd||0)) : 0;
   const top = [...items].sort(sorters.value)[0];
   $("#app").innerHTML = `
-    <div class="section-head" style="margin-top:0"><h2>Mi colección</h2>
+    <div class="section-head" style="margin-top:0"><h2>Mi colección</h2>${colTabsHtml()}
       <div class="row"><button class="btn primary" id="cFile">Importar archivo</button><button class="btn" id="cImport">Agregar por lista</button><button class="btn" id="cRefresh" ${items.length?"":"disabled"}>Actualizar precios</button></div></div>
     <div class="stats">
       <div class="stat"><div class="k">Cartas</div><div class="v">${total.toLocaleString("es-PE")}</div><div class="s">${items.length} entradas distintas</div></div>
@@ -1410,7 +1479,7 @@ function renderCollection(){
     const lines = parseList($("#cImportText").value); if(!lines.length) return;
     $("#cImportMsg").textContent = "Buscando " + lines.length + " cartas…";
     const { found, missing } = await resolveLines(lines);
-    found.forEach(({line, c}) => addToCollection(c, line.qty, line.foil));
+    found.forEach(({line, c}) => addToCollection(c, line.qty, line.foil, "Agregar por lista"));
     toast(`${found.length} cartas agregadas`);
     renderCollection();
     if(missing.length){ $("#cImportBox").hidden=false; $("#cImportText").value = missing.map(l=>l.raw).join("\n"); $("#cImportMsg").textContent = "No encontré estas (revisa el nombre): " + missing.length; }
@@ -1418,7 +1487,7 @@ function renderCollection(){
   if($("#cRefresh")) $("#cRefresh").onclick = async () => { $("#cRefresh").disabled=true; $("#cRefresh").textContent="Actualizando…"; const n = await refreshWithMoves(S.collection.map(e=>e.id)); const up = (S.moves&&S.moves.up.length)||0; toast(`Precios actualizados (${n} cartas)${up?` · ${up} subieron`:""}`); renderCollection(); };
   if($("#cFile2")) $("#cFile2").onclick = () => { $("#fiBox").hidden = false; $("#fiBox").scrollIntoView({block:"center"}); };
   if($("#cSeed")) $("#cSeed").onclick = async () => { $("#cSeed").disabled=true; $("#cSeed").textContent="Cargando desde Scryfall…";
-    const { found, missing } = await resolveLines(parseList(FRA_SEED)); found.forEach(({line,c})=>addToCollection(c,line.qty,line.foil));
+    const { found, missing } = await resolveLines(parseList(FRA_SEED)); found.forEach(({line,c})=>addToCollection(c,line.qty,line.foil,"Cartas de Reality Fracture"));
     toast(`${found.length} cartas cargadas` + (missing.length?`, ${missing.length} no encontradas`:"")); renderCollection(); };
   if(!items.length) return;
   $("#cQ").oninput = e => { st.q = e.target.value; drawColList(list); renderCollectionDebounced(); };
@@ -1545,6 +1614,7 @@ async function runFileImport(file, mode){
   const r = await resolveImport(lines, (n, retry) => { bar.firstElementChild.style.width = Math.round(100*n/lines.length)+"%"; msg.textContent = `${retry?"Reintentando sin edición… ":"Buscando… "}${n} de ${lines.length}`; });
   if(mode==="replace") S.collection = [];
   r.found.forEach(({line,c})=>{ keep(c); const e = S.collection.find(x=>x.id===c.id && x.foil===!!line.foil); if(e) e.qty+=line.qty; else S.collection.push({id:c.id, foil:!!line.foil, qty:line.qty, added:Date.now()}); });
+  if(r.found.length) logAdd({ bulk:true, src: mode==="replace" ? "Importación (reemplazó la colección)" : "Importación de archivo", qty: r.found.reduce((a,f)=>a+f.line.qty,0), kinds: r.found.length, file: file.name || "" });
   save();
   const added = r.found.reduce((a,f)=>a+f.line.qty,0);
   renderCollection();
@@ -1967,7 +2037,7 @@ function renderDeck(d){
   $("#dDel").onclick = () => { if(confirm(`¿Borrar el deck "${d.name}"? Las cartas de tu colección no se tocan.`)){ S.decks = S.decks.filter(x=>x!==d); save(); location.hash="decks"; } };
   $("#dExport").onclick = () => copyText(exportDeck(d), "Lista copiada");
   $$("[data-alt]").forEach(b => b.onclick = () => showAlternatives(d, b.dataset.alt));
-  $$("[data-got]").forEach(b => b.onclick = () => { const name=b.dataset.got; const c=[...d.cards.map(e=>card(e.id)), d.commander&&card(d.commander)].find(x=>x&&x.name===name); if(!c) return; addToCollection(c, +b.dataset.n||1, false); toast(`${name} agregada a tu colección`); renderDeck(d); });
+  $$("[data-got]").forEach(b => b.onclick = () => { const name=b.dataset.got; const c=[...d.cards.map(e=>card(e.id)), d.commander&&card(d.commander)].find(x=>x&&x.name===name); if(!c) return; addToCollection(c, +b.dataset.n||1, false, "Desde el deck " + d.name); toast(`${name} agregada a tu colección`); renderDeck(d); });
   if($("#dCopyMiss")) $("#dCopyMiss").onclick = () => copyText(miss.map(m=>`${m.n} ${m.name}`).join("\n"), "Lista de compras copiada");
   $("#dImportBtn").onclick = () => { $("#dImportBox").hidden = !$("#dImportBox").hidden; };
   $("#dImportGo").onclick = async () => { $("#dImportMsg").textContent="Importando…"; const r = await importIntoDeck(d, $("#dImportText").value); save(); renderDeck(d);
@@ -2518,7 +2588,7 @@ function renderScan(){
   $("#scFile").onchange = async e => { for(const f of e.target.files){ try{ await enqueue(await fileToCanvas(f)); }catch(err){ toast(err.message); } } e.target.value=""; };
   $("#scCam").onclick = toggleCamera;
   $("#scShot").onclick = capture;
-  $("#scAddAll").onclick = () => { let n=0; SC.items.filter(i=>i.status==="ok"&&!i.added).forEach(i=>{ addToCollection(i.card,i.qty,i.foil); i.added=true; n++; }); toast(`${n} cartas agregadas a tu colección`); drawScanList(); };
+  $("#scAddAll").onclick = () => { let n=0; SC.items.filter(i=>i.status==="ok"&&!i.added).forEach(i=>{ addToCollection(i.card,i.qty,i.foil,"Escáner"); i.added=true; n++; }); toast(`${n} cartas agregadas a tu colección`); drawScanList(); };
   $("#scClear").onclick = () => { SC.items = SC.items.filter(i=>i.status==="leyendo"); drawScanList(); };
   if(SC.stream){ $("#scVideo").srcObject = SC.stream; }
   drawScanList();
@@ -2561,7 +2631,7 @@ function drawScanList(){
     const sel=$("[data-print]",row); if(sel) sel.onchange = () => { it.card = it.prints.find(p=>p.id===sel.value)||it.card; drawScanList(); };
     const f=$("[data-foil]",row); if(f) f.onchange = () => { it.foil=f.checked; drawScanList(); };
     $$("[data-q]",row).forEach(b=>b.onclick=()=>{ it.qty=Math.max(1,it.qty+ +b.dataset.q); drawScanList(); });
-    const a=$("[data-add]",row); if(a) a.onclick = () => { addToCollection(it.card,it.qty,it.foil); it.added=true; toast(`${it.card.name} agregada`); drawScanList(); };
+    const a=$("[data-add]",row); if(a) a.onclick = () => { addToCollection(it.card,it.qty,it.foil,"Escáner"); it.added=true; toast(`${it.card.name} agregada`); drawScanList(); };
     const fx=$("[data-fix]",row); if(fx) fx.onsubmit = async e => { e.preventDefault(); const t=$("input",fx).value.trim(); if(!t) return; const c = await findByName(t); if(c){ it.card=remember(c); it.status="ok"; it.how="nombre escrito"; it.added=false; it.prints=null; drawScanList(); loadPrints(it); } else toast("No encontré esa carta"); };
     const im=$("[data-open]",row); if(im) im.onclick=()=>openCard(im.dataset.open);
   });
