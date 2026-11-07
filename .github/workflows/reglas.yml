@@ -1,0 +1,23 @@
+name: Actualizar reglas completas
+
+on:
+  schedule:
+    - cron: "0 13 * * 1"   # cada lunes, 8:00 en Lima
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reglas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Descargar y convertir las reglas
+        run: python3 scripts/update_rules.py
+      - name: Guardar si cambiaron
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rules.json
+          git diff --cached --quiet || (git commit -m "Actualizar reglas completas" && git push)
