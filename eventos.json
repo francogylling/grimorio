@@ -1,0 +1,18 @@
+{
+  "checked": "2026-11-08",
+  "items": [
+    {
+      "d": "2027-01-29",
+      "d2": "2027-02-04",
+      "k": "prerelease",
+      "est": true,
+      "t": "Prerelease de Nauctis",
+      "te": "Nauctis Prerelease",
+      "x": "Las tiendas de Lima hacen el prerelease la semana antes del lanzamiento (5 de febrero). Pregunta en tu tienda o búscalo en el localizador de Wizards cuando lo anuncien.",
+      "xe": "Lima stores hold the prerelease the week before release (February 5). Ask your store or look it up in the Wizards locator once it's announced.",
+      "lugar": "Tiendas de Lima",
+      "le": "Lima stores",
+      "u": "https://locator.wizards.com/"
+    }
+  ]
+}
