@@ -1,6 +1,6 @@
 // Grimorio: abre sin internet usando la última versión guardada.
 // Siempre intenta bajar la versión nueva primero, así las actualizaciones llegan solas.
-const CACHE = "grimorio-v15";
+const CACHE = "grimorio-v16";
 const IMG = "grimorio-img"; // imágenes de cartas guardadas para usar sin internet
 const FILES = ["./", "index.html", "manifest.webmanifest", "icon-180.png", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES))); self.skipWaiting(); });
