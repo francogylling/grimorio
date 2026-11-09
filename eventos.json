@@ -1,6 +1,31 @@
 {
-  "checked": "2026-11-08",
+  "checked": "2026-11-09",
   "items": [
+    {
+      "d": "2026-11-13",
+      "k": "release",
+      "est": true,
+      "t": "Lanzamiento de Star Trek",
+      "te": "Star Trek release",
+      "x": "Desde el 13 de noviembre las tiendas venden Star Trek y empiezan Standard Showdown, FNM y Commander Night de 2HG; confirma horarios con tu tienda.",
+      "xe": "From November 13 stores sell Star Trek and start Standard Showdown, FNM and 2HG Commander Night; check times with your store.",
+      "lugar": "Tiendas de Lima",
+      "le": "Lima stores",
+      "u": "https://wpn.wizards.com/en/news/star-trek-dates-and-details"
+    },
+    {
+      "d": "2026-11-20",
+      "d2": "2026-11-26",
+      "k": "commander",
+      "est": true,
+      "t": "Commander Party de Star Trek",
+      "te": "Star Trek Commander Party",
+      "x": "Evento casual de Commander de Wizards; cada tienda elige un día de esa semana.",
+      "xe": "Casual Wizards Commander event; each store picks one day that week.",
+      "lugar": "Tiendas de Lima",
+      "le": "Lima stores",
+      "u": "https://wpn.wizards.com/en/news/star-trek-dates-and-details"
+    },
     {
       "d": "2027-01-29",
       "d2": "2027-02-04",
