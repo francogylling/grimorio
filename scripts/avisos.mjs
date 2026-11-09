@@ -26,10 +26,13 @@ const mark = k => { state.sent[hash(k)] = now.toISOString().slice(0,10); };
 async function getData(){
   const src = process.env.GIST_FILE;
   if(src) return JSON.parse(fs.readFileSync(src, "utf8")).data;
-  const hd = { "User-Agent":"grimorio-avisos", Accept:"application/vnd.github+json" };
-  if(process.env.GITHUB_TOKEN) hd.Authorization = "Bearer " + process.env.GITHUB_TOKEN;
-  const g = await (await fetch(`https://api.github.com/gists/${cfg.g}`, { headers:hd })).json();
-  const f = g.files && g.files["grimorio-sync.json"]; if(!f) throw new Error("No encontré el gist de sincronización");
+  // el gist es secreto pero se lee con su id; el token de Actions no sirve para gists, así que primero sin token
+  const base = { "User-Agent":"grimorio-avisos", Accept:"application/vnd.github+json" };
+  const tries = [base]; if(process.env.GITHUB_TOKEN) tries.push(Object.assign({ Authorization:"Bearer " + process.env.GITHUB_TOKEN }, base));
+  let g = null, why = "";
+  for(const hd of tries){ const r = await fetch(`https://api.github.com/gists/${cfg.g}`, { headers:hd }); g = await r.json().catch(() => ({}));
+    if(g.files && g.files["grimorio-sync.json"]) break; why += ` [${r.status} ${g.message || "sin archivo grimorio-sync.json"}]`; g = null; }
+  const f = g && g.files["grimorio-sync.json"]; if(!f) throw new Error("No encontré el gist de sincronización" + why);
   const txt = f.truncated ? await (await fetch(f.raw_url)).text() : f.content;
   return JSON.parse(txt).data;
 }
