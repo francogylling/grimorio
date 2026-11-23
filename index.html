@@ -3644,6 +3644,7 @@ function planFor(style, c){
     nbLands: ci>=3 ? 14 : ci===2 ? 10 : ci===1 ? 5 : 3, highMax: ["stompy","control"].includes(id) ? 9 : 6 };
 }
 async function buildStyle(style){
+  if(!style || !A.cmd || !card(A.cmd)) return;
   const c = card(A.cmd); const b = baseQ(c);
   A.style = style; setRes(null); A.loading = true; renderAssistant();
   const P = planFor(style, c), spellSlots = 99 - P.L;
@@ -3696,7 +3697,7 @@ async function loadEdhrec(c){
   if(A.cmd===c.id) renderAssistant();
 }
 async function buildEdhTheme(t){
-  const c = card(A.cmd); A.style = {id:"edh-"+t.slug, n:t.n+" (EDHREC)", d:`Cartas que más juegan los ${t.count?t.count.toLocaleString(LOC())+" ":""}mazos de ${c.name} con el tema ${t.n} en EDHREC.`}; A.result=null; A.loading=true; renderAssistant();
+  const c = card(A.cmd); const st = A.style = {id:"edh-"+t.slug, n:t.n+" (EDHREC)", d:`Cartas que más juegan los ${t.count?t.count.toLocaleString(LOC())+" ":""}mazos de ${c.name} con el tema ${t.n} en EDHREC.`}; A.result=null; A.loading=true; renderAssistant();
   try{
     const r = await fetch(`https://json.edhrec.com/pages/commanders/${edhSlug(c.name)}/${t.slug}.json`); if(!r.ok) throw 0; const j = await r.json();
     const find = (o,k,d=0) => { if(!o||typeof o!=="object"||d>6) return null; if(Array.isArray(o[k])) return o[k]; for(const v of Object.values(o)){ const f=find(v,k,d+1); if(f) return f; } return null; };
@@ -3706,8 +3707,9 @@ async function buildEdhTheme(t){
     const all = [...seenN]; const byName = {};
     for(let i=0;i<all.length;i+=75){ try{ const res = await sf("/cards/collection",{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify({identifiers:all.slice(i,i+75).map(n=>({name:n.split(" // ")[0]}))})}); res.data.forEach(x=>{ const s=remember(slim(x)); byName[s.name]=s; byName[s.name.split(" // ")[0]]=s; }); }catch(e){} }
     { const vals=[...new Set(Object.values(byName))]; const alt=await preferCheap(vals); vals.forEach((v,i)=>{ if(alt[i]!==v) for(const k in byName) if(byName[k]===v) byName[k]=alt[i]; }); }
+    if(A.style!==st) return;
     setRes({ groups: groups.map(g=>({title:g.title, cards:g.names.map(n=>byName[n]||byName[n.split(" // ")[0]]).filter(Boolean).filter(x=>!A.budget || (usdOf(x)||0)<=+A.budget), incl:g.incl})), basics:[], gcCount:0, edh:true });
-  }catch(e){ setRes({ error:"No pude leer ese tema de EDHREC desde la app.", link:`https://edhrec.com/commanders/${edhSlug(c.name)}/${t.slug}` }); }
+  }catch(e){ if(A.style!==st) return; setRes({ error:"No pude leer ese tema de EDHREC desde la app.", link:`https://edhrec.com/commanders/${edhSlug(c.name)}/${t.slug}` }); }
   A.loading=false; renderAssistant();
 }
 /* ---- Versiones: completa / económica / solo mi colección ---- */
@@ -3902,6 +3904,7 @@ function bindMergeBox(){
 }
 function resultCards(){ const v=cur(); return v ? v.groups.flatMap(g=>g.cards) : []; }
 function renderAssistant(){
+  if(!A.style && (A.loading || A.result)){ A.loading = false; A.result = null; }
   if(!A.cmd && S.settings.lastCmd && card(S.settings.lastCmd)) A.cmd = S.settings.lastCmd;
   const c = A.cmd && card(A.cmd);
   if(c && A.edh===null) loadEdhrec(c);
@@ -3972,7 +3975,7 @@ function renderAssistant(){
   let tt=null; $("#aText").oninput = e => { A.text=e.target.value; clearTimeout(tt); tt=setTimeout(()=>{ const pos=e.target.selectionStart; renderAssistant(); const i=$("#aText"); i.focus(); i.setSelectionRange(pos,pos); },400); };
   $("#aBracket").onchange = e => { A.bracket=e.target.value; if(A.style&&!A.style.id.startsWith("edh-")) buildStyle(A.style); else renderAssistant(); };
   $("#aBudget").onchange = e => { A.budget=e.target.value; if(A.style&&!A.style.id.startsWith("edh-")) buildStyle(A.style); else renderAssistant(); };
-  $$("[data-style]").forEach(b => b.onclick = () => buildStyle(styles.find(s=>s.id===b.dataset.style)));
+  $$("#app button.style[data-style]").forEach(b => b.onclick = () => { const st = styles.find(s=>s.id===b.dataset.style); if(st) buildStyle(st); });
   $$("[data-edh]").forEach(ch => ch.onclick = () => buildEdhTheme(A.edh.tags.find(t=>t.slug===ch.dataset.edh)));
   bindTiles($("#aResult"));
   $$("[data-ver]").forEach(b => b.onclick = () => switchVersion(b.dataset.ver));
@@ -3986,7 +3989,7 @@ function renderAssistant(){
 }
 function assistList(){ const c=card(A.cmd); let out=`Commander\n1 ${c.name}\n\nDeck\n`; out += resultCards().map(x=>`1 ${x.name}`).join("\n"); if(cur().basics.length) out += "\n" + cur().basics.filter(b=>b.n>0).map(b=>`${b.n} ${b.name}`).join("\n"); return out; }
 function setAssistCommander(c){
-  if(!c) return; remember(c); keep(c); A.cmd = c.id; A.style=null; A.result=null; A.edh=null; S.settings.lastCmd = c.id; save();
+  if(!c) return; remember(c); keep(c); A.cmd = c.id; A.style=null; A.result=null; A.edh=null; A.loading=false; A.verLoading=false; S.settings.lastCmd = c.id; save();
   if(!isCommanderCard(c)) toast("Ojo: esta carta normalmente no puede ser comandante");
   location.hash==="#asistente" ? renderAssistant() : (location.hash="asistente");
 }
