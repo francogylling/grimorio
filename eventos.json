@@ -1,6 +1,19 @@
 {
-  "checked": "2026-11-16",
+  "checked": "2026-11-23",
   "items": [
+    {
+      "d": "2026-11-13",
+      "d2": "2027-01-28",
+      "k": "commander",
+      "est": true,
+      "t": "Commander Night 2HG de Star Trek",
+      "te": "Star Trek 2HG Commander Night",
+      "x": "Commander en parejas (Gigante de dos cabezas); las tiendas pueden hacerlo hasta el 28 de enero, pregunta en la tuya qué día.",
+      "xe": "Commander in pairs (Two-Headed Giant); stores can run it until January 28, ask yours which day.",
+      "lugar": "Tiendas de Lima",
+      "le": "Lima stores",
+      "u": "https://wpn.wizards.com/es/event/two-headed-giant-commander-night-star-trek"
+    },
     {
       "d": "2026-11-20",
       "d2": "2026-11-26",
